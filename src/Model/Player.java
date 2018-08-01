@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import Controller.GameController;
-import Controller.PlayerController;
 
 public class Player {
 	private String name;
@@ -18,11 +17,10 @@ public class Player {
 	private ArrayList<Tool> tools;
 	private ArrayList<Crop> seeds;
 	private int noOfFertilizers;
-	private PlayerController playerController;
 	private GameController gameController;
 
 
-	public Player(String name, PlayerController pc) {
+	public Player(String name) {
 		this.name = name;
 		this.lot = new Lot();
 		this.OC = 100;
