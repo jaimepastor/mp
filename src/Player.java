@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Player
 {
@@ -103,6 +104,7 @@ public class Player
 					tile.setHeldCrop(seeds.remove(i));
 				}
 		else
+					System.out.println("graciel dont");
 			//controller -> seed does not exist booboooo
 	}
 
