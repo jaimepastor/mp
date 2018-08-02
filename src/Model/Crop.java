@@ -144,7 +144,8 @@ public class Crop
 
     @Override
     public String toString() {
-        return  "Crop: " + type +
+        return  "Seed Name: " + seedName +
+                "\nCrop type: " + type +
                 "\nBase Price: " + basePrice +
                 "\nSeed Cost" + seedCost +
                 "\nNeeded amount of Fertilizer: " + fertilizerNeeded +

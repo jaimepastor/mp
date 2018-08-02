@@ -20,7 +20,7 @@ public class Player {
 	private GameController gameController;
 
 
-	public Player(String name) {
+	public Player(String name, GameController gc) {
 		this.name = name;
 		this.lot = new Lot();
 		this.OC = 100;
@@ -32,6 +32,7 @@ public class Player {
 		this.seeds = new ArrayList<Crop>();
 		this.noOfFertilizers = 5;
 
+		this.gameController = gc;
 		initializeFarmerTypes();
 		initializeTools();
 	}
@@ -115,5 +116,14 @@ public class Player {
 
 	public void harvestCrop(Tile tile) {
 
+	}
+
+	public ArrayList<Crop> getSeeds() {
+		seeds.add(new Crop("Turnip", "Vegetable", 60, 5, 3, 5, 7, 9, 10, 20, 20));
+		return seeds;
+	}
+
+	public void useTool(int toolIndex, Tile tile){
+		tools.get(toolIndex).useTool(tile);
 	}
 }

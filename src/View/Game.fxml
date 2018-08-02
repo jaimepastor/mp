@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -8,9 +9,9 @@
 
 <AnchorPane prefHeight="360.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
    <children>
-      <TilePane fx:id="tilesPane" layoutX="47.0" layoutY="55.0" prefHeight="200.0" prefWidth="399.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <TilePane fx:id="lot" layoutX="47.0" layoutY="55.0" prefHeight="200.0" prefWidth="399.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <ImageView fitHeight="78.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="tile11" fitHeight="78.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@tile.png" />
                </image></ImageView>
@@ -260,29 +261,31 @@
                </image>
             </ImageView>
          </children></TilePane>
-      <ToolBar layoutX="10.0" layoutY="273.0" prefHeight="73.0" prefWidth="248.0">
+      <ToolBar layoutX="10.0" layoutY="273.0" prefHeight="73.0" prefWidth="248.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
          <items>
-            <ImageView fitHeight="54.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="wateringCan" fitHeight="54.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@wateringCan.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="55.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="plow" fitHeight="55.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@plow.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="53.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="pickaxe" fitHeight="53.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@pickaxe.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="53.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="fertilizer" fitHeight="53.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@fertilizer.png" />
                </image>
             </ImageView>
          </items>
       </ToolBar>
+      <TextArea fx:id="textArea" layoutX="409.0" layoutY="211.0" prefHeight="125.0" prefWidth="223.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+      <TilePane fx:id="seedDisplay" layoutX="415.0" layoutY="10.0" prefHeight="189.0" prefWidth="214.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
    </children>
 </AnchorPane>
