@@ -45,16 +45,20 @@ public class Crop
         return sellingPrice;
     }
 
+    public void setNoOfWaters(int noOfWaters) {
+        this.noOfWaters = noOfWaters;
+    }
+
+    public void setNoOfFertilizes(int noOfFertilizes) {
+        this.noOfFertilizes = noOfFertilizes;
+    }
+
     public String getType() {
         return type;
     }
 
     public double getHarvestTime() {
         return harvestTime;
-    }
-
-    public void setHarvestTime(double harvestTime) {
-        this.harvestTime = harvestTime;
     }
 
     public int getWaterNeeded() {
@@ -67,10 +71,6 @@ public class Crop
 
     public int getHarvestCost() {
         return harvestCost;
-    }
-
-    public void setHarvestCost(int harvestCost) {
-        this.harvestCost = harvestCost;
     }
 
     public int getNoPrdctsPrdced() {
@@ -93,55 +93,33 @@ public class Crop
         return noOfWaters;
     }
 
-    public void setNoOfWaters(int noOfWaters) {
-        this.noOfWaters = noOfWaters;
-    }
-
     public int getNoOfFertilizes() {
         return noOfFertilizes;
-    }
-
-    public void setNoOfFertilizes(int noOfFertilizes) {
-        this.noOfFertilizes = noOfFertilizes;
     }
 
     public int getCropBonus() {
         return cropBonus;
     }
 
-    public void setCropBonus(int cropBonus) {
-        this.cropBonus = cropBonus;
-    }
-
     public boolean isWitherStatus() {
         return witherStatus;
-    }
-
-    public void setWitherStatus(boolean witherStatus) {
-        this.witherStatus = witherStatus;
     }
 
     public int getWitherTime() {
         return witherTime;
     }
 
-    public void setWitherTime(int witherTime) {
-        this.witherTime = witherTime;
-    }
-
     public int getPrdctStayTIme() {
         return prdctStayTime;
-    }
-
-    public void setPrdctStayTIme(int prdctStayTime) {
-        this.prdctStayTime = prdctStayTime;
     }
 
     public int getXpResult() {
         return xpResult;
     }
 
-
+    public String getSeedName(){
+        return seedName;
+    }
     @Override
     public String toString() {
         return  "Seed Name: " + seedName +

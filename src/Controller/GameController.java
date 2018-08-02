@@ -32,7 +32,7 @@ public class GameController {
             lot.getChildren().get(i).addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    textArea.setText(p.getSeeds().toString());
+                    textArea.setText(p.getLot().toString().replace("[","").replace("]", ""));
                 }
             });
 

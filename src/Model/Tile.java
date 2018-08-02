@@ -24,14 +24,6 @@ public class Tile
         this.heldCrop = null;
     }
 
-    public void setxCoord(int xCoord) {
-        this.xCoord = xCoord;
-    }
-
-    public void setyCoord(int yCoord) {
-        this.yCoord = yCoord;
-    }
-
     public void setPlowStatus(boolean plowStatus) {
         this.plowStatus = plowStatus;
     }
@@ -86,5 +78,10 @@ public class Tile
 
     public Crop getHeldCrop() {
         return heldCrop;
+    }
+
+    public String toString(){
+        return "xCoord: " + xCoord + "\nyCoord: " + yCoord + "\nIs Plowed: " + plowStatus + "\nIs Watered: " + waterStatus
+                + "\nHas Rock: " + rockStatus + "\nHas Space: " + spaceStatus + "\nIs Crop Withered: " + witherStatus + "\nCurrent Crop: " + heldCrop.getSeedName();
     }
 }

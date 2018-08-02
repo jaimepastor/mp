@@ -123,6 +123,11 @@ public class Player {
 		return seeds;
 	}
 
+	public Lot getLot() {
+		lot.getTile()
+		return lot;
+	}
+
 	public void useTool(int toolIndex, Tile tile){
 		tools.get(toolIndex).useTool(tile);
 	}
