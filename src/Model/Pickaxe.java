@@ -2,8 +2,8 @@ package Model;
 
 public class Pickaxe extends Tool
 {
-    public Pickaxe(String information){
-        super(information);
+    public Pickaxe(String name, String information){
+        super(name, information);
     }
 
     @Override

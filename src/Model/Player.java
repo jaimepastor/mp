@@ -46,10 +46,10 @@ public class Player {
 	}
 
 	private void initializeTools() {
-		this.tools.add(new Pickaxe("nigeria"));
-		this.tools.add(new WateringCan("nigeria"));
-		this.tools.add(new Plow("nigeria"));
-		this.tools.add(new Fertilizer("nigeria"));
+		this.tools.add(new Pickaxe("Pickaxe", "nigeria"));
+		this.tools.add(new WateringCan("Watering Can", "nigeria"));
+		this.tools.add(new Plow("Plow", "nigeria"));
+		this.tools.add(new Fertilizer("Fertilizer", "nigeria"));
 	}
 
 	private void displaySeeds() {
@@ -129,6 +129,12 @@ public class Player {
 	}
 
 	public void useTool(int toolIndex, Tile tile){
+	    boolean pwede = true;
+	    if(toolIndex == 1 && )
 		tools.get(toolIndex).useTool(tile);
 	}
+
+    public ArrayList<Tool> getTools() {
+        return tools;
+    }
 }

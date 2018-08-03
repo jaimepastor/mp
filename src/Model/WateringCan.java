@@ -2,8 +2,8 @@ package Model;
 
 public class WateringCan extends Tool
 {
-    public WateringCan(String information){
-        super(information);
+    public WateringCan(String name, String information){
+        super(name, information);
     }
 
     @Override

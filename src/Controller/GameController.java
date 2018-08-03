@@ -4,6 +4,7 @@ import Model.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -19,7 +20,7 @@ public class GameController {
     @FXML private ImageView plow;
     @FXML private ImageView fertilizer;
     @FXML private TilePane seedDisplay;
-    @FXML private AnchorPane stuffInfo;
+    @FXML private Label stuffInfo;
     @FXML private AnchorPane actionPane;
 
     private Player p;
@@ -34,7 +35,7 @@ public class GameController {
         wateringCan.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                stuffInfo.setText(p.getTools().get(1).getInformation());
             }
         });
 

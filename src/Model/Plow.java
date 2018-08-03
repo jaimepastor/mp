@@ -2,8 +2,8 @@ package Model;
 
 public class Plow extends Tool
 {
-    public Plow(String information){
-        super(information);
+    public Plow(String name, String information){
+        super(name, information);
     }
 
     @Override
