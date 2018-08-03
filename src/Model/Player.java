@@ -124,7 +124,7 @@ public class Player {
 	}
 
 	public Lot getLot() {
-		lot.getTile()
+
 		return lot;
 	}
 

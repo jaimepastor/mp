@@ -81,7 +81,7 @@ public class Tile
     }
 
     public String toString(){
-        return "xCoord: " + xCoord + "\nyCoord: " + yCoord + "\nIs Plowed: " + plowStatus + "\nIs Watered: " + waterStatus
-                + "\nHas Rock: " + rockStatus + "\nHas Space: " + spaceStatus + "\nIs Crop Withered: " + witherStatus + "\nCurrent Crop: " + heldCrop.getSeedName();
+        return "xCoord: " + xCoord + "\nyCoord: " + yCoord + "\nIs Plowed: " + Boolean.toString(plowStatus) + "\nIs Watered: " + Boolean.toString(waterStatus)
+                + "\nHas Rock: " + Boolean.toString(rockStatus) + "\nHas Space: " + Boolean.toString(spaceStatus) + "\nIs Crop Withered: " + Boolean.toString(witherStatus) + "\nCurrent Crop: "/* + heldCrop.getSeedName()*/;
     }
 }

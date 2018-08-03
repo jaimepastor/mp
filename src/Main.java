@@ -15,7 +15,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Game.fxml"));
-        Scene mainScene = new Scene(loader.load(), 640, 360);
+        Scene mainScene = new Scene(loader.load(), 1280, 720);
         GameController gController = loader.getController();
 
         primaryStage.setScene(mainScene);
