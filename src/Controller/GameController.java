@@ -14,7 +14,7 @@ import javafx.scene.layout.TilePane;
 import java.util.Random;
 
 public class GameController {
-    @FXML private GridPane lotGrid;
+    @FXML private TilePane lot;
     @FXML private TilePane seedDisplay;
     @FXML private AnchorPane actionPane;
     @FXML private ImageView pickaxe;
@@ -217,10 +217,10 @@ public class GameController {
 
         for(int i = 0; i < 50; i++) {
             final int x = i;
-            lotGrid.getChildren().get(i).setOnMouseClicked(new EventHandler<MouseEvent>() {
+            lot.getChildren().get(x).setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    System.out.println("" + GridPane.getColumnIndex(lotGrid.getChildren().get(x)) + "\n"+ GridPane.getRowIndex(lotGrid.getChildren().get(x)));
+                    System.out.println("" + p.getLot().getTile(x % 10, x / 10));
                 }
             });
         }

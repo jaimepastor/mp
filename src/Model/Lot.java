@@ -14,7 +14,7 @@ public class Lot
     }
 
     public Tile getTile(int xCoord, int yCoord){
-        return tiles[xCoord-1][yCoord-1];
+        return tiles[xCoord][yCoord];
     }
 
     private void initializeTiles(){
