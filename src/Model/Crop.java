@@ -125,7 +125,7 @@ public class Crop
         return  "Seed Name: " + seedName +
                 "\nCrop type: " + type +
                 "\nBase Price: " + basePrice +
-                "\nSeed Cost" + seedCost +
+                "\nSeed Cost: " + seedCost +
                 "\nNeeded amount of Fertilizer: " + fertilizerNeeded +
                 "\nNeeded amount of Water: " + waterNeeded +
                 "\nXP Result: " + xpResult + "\n";

@@ -14,7 +14,7 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
    <children>
-      <ToolBar layoutX="806.0" layoutY="590.0" prefHeight="98.0" prefWidth="431.0" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0">
+      <ToolBar layoutX="806.0" layoutY="590.0" prefHeight="102.0" prefWidth="422.0" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0">
          <items>
             <ImageView fx:id="wateringCan" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -36,12 +36,79 @@
                   <Image url="@fertilizer.png" />
                </image>
             </ImageView>
+            <ImageView fx:id="seeds" fitHeight="106.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@seeds.png" />
+               </image>
+            </ImageView>
          </items>
       </ToolBar>
-      <TilePane fx:id="seedDisplay" layoutX="415.0" layoutY="10.0" prefHeight="389.0" prefWidth="422.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="100.0" />
+      <TilePane fx:id="seedDisplay" layoutX="415.0" layoutY="10.0" prefHeight="314.0" prefWidth="422.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <ImageView fx:id="turnip" fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@turnip.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="carrot" fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@carrot.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="tomato" fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@tomato.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="potato" fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@potato.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="rose" fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@rose.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="tulip" fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@tulip.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="stargazer" fitHeight="105.0" fitWidth="105.0">
+               <image>
+                  <Image url="@stargazer.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="sunflower" fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@sunflower.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="mango" fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@mango.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="apple" fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@apple.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="banana" fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@banana.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="orange" fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@orange.png" />
+               </image>
+            </ImageView>
+         </children></TilePane>
       <AnchorPane fx:id="stuffInfo" layoutX="63.0" layoutY="457.0" prefHeight="193.0" prefWidth="391.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0">
          <children>
-            <Label fx:id="infoStuff" alignment="TOP_LEFT" layoutX="19.0" layoutY="88.0" prefHeight="164.0" prefWidth="362.0" text="dslkfjdskl" wrapText="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+            <Label fx:id="infoStuff" alignment="TOP_LEFT" layoutX="19.0" layoutY="88.0" prefHeight="164.0" prefWidth="362.0" text="Information goes here." wrapText="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
          </children>
       </AnchorPane>
       <GridPane fx:id="farmerInfo" gridLinesVisible="true" layoutX="37.0" layoutY="24.0" prefHeight="59.0" prefWidth="1220.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

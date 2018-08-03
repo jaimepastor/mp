@@ -104,7 +104,7 @@ public class Player {
 	public void plantSeeds(Tile tile) {
 		//connect to controller what to return
 		Crop c = new Crop("Turnip", "xD", 1, 1, 0, 1, 1, 5, 6, 0, 1);
-		//controller should return c?? which represents what crop user chose
+		//controller should return c?? which repzresents what crop user chose
 		if (seeds.contains(c) == true)
 			for (int i = 0; i < seeds.size(); i++)
 				if (seeds.get(i).equals(c)) {
@@ -131,11 +131,18 @@ public class Player {
 	public void useTool(int toolIndex, Tile tile){
 	    boolean pwede = true;
 	    switch(toolIndex){
-            case 0 : break;
-            case 1 : if(tile.getHeldCrop().getNoOfWaters() >= tile.getHeldCrop().getWaterNeeded());
+            case 0 : if(tile.getRockStatus() == false)
+                        pwede = false;
                     break;
-            case 2 : break;
-            case 3 : break;
+            case 1 : if(tile.getHeldCrop().getNoOfWaters() >= tile.getHeldCrop().getWaterNeeded())
+                        pwede = false;
+                    break;
+            case 2 : if(tile.getPlowStatus() == true)
+                        pwede = false;
+                    break;
+            case 3 : if(tile.getHeldCrop().getNoOfFertilizes() >= tile.getHeldCrop().getFertilizerNeeded())
+                        pwede = false;
+                    break;
         }
 
 	    if (pwede == true)
