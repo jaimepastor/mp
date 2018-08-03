@@ -224,7 +224,8 @@ public class GameController {
             lot.getChildren().get(x).setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    System.out.println("" + p.getLot().getTile(x % 10, x / 10));
+                    System.out.println("" + x % 10 + "" + x / 10);
+                    System.out.println("" + p.getLot().getTile(x / 10, x % 10));
                 }
             });
         }

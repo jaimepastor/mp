@@ -13,7 +13,7 @@ public class Tile
     private boolean witherStatus;
     private Crop heldCrop;
 
-    public Tile(int xCoord, int yCoord){
+    public Tile(int yCoord, int xCoord){
         this.xCoord = xCoord;
         this.yCoord = yCoord;
         this.plowStatus = false;

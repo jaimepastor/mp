@@ -13,13 +13,13 @@ public class Lot
         return tiles;
     }
 
-    public Tile getTile(int xCoord, int yCoord){
-        return tiles[xCoord][yCoord];
+    public Tile getTile(int yCoord, int xCoord){
+        return tiles[yCoord][xCoord];
     }
 
     private void initializeTiles(){
-        for(int i = 0; i < 5; i++)
-            for(int j = 0; j < 10; j++)
-                tiles[i][j] = new Tile(i, j);
+        for(int y = 0; y < 5; y++)
+            for(int x = 0; x < 10; x++)
+                tiles[y][x] = new Tile(y, x);
     }
 }
