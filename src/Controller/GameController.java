@@ -23,6 +23,10 @@ public class GameController {
     @FXML private ImageView fertilizer;
     @FXML private ImageView seeds;
     @FXML private Label infoStuff;
+    @FXML private Label name;
+    @FXML private Label xp;
+    @FXML private Label type;
+    @FXML private Label oc;
     @FXML private Button actionPaneBuy;
     @FXML private Button actionPaneCancel;
     @FXML private Button actionPaneUse;
@@ -243,6 +247,9 @@ public class GameController {
         });
     }
 
+    public void update(){
+
+    }
     public void setModel(Player p){
         this.p = p;
     }

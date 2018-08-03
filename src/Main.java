@@ -21,7 +21,7 @@ public class Main extends Application {
         primaryStage.setScene(mainScene);
         primaryStage.setResizable(false);
         primaryStage.show();
-
+        
         Player p = new Player("HIME", gController);
         gController.setModel(p);
     }
