@@ -338,9 +338,9 @@
       </GridPane>
       <AnchorPane fx:id="actionPane" layoutX="507.0" layoutY="496.0" prefHeight="181.0" prefWidth="204.0">
          <children>
-            <Button fx:id="buy" layoutX="45.0" layoutY="21.0" mnemonicParsing="false" text="BUY" AnchorPane.bottomAnchor="119.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="21.0" />
-            <Button layoutX="52.0" layoutY="69.0" mnemonicParsing="false" text="USE TOOL" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="70.0" />
-            <Button fx:id="useTool" layoutX="52.0" layoutY="124.0" mnemonicParsing="false" text="CANCEL" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="120.0" />
+            <Button fx:id="actionPaneBuy" layoutX="45.0" layoutY="21.0" mnemonicParsing="false" text="BUY" AnchorPane.bottomAnchor="119.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="21.0" />
+            <Button fx:id="actionPaneUse" layoutX="52.0" layoutY="69.0" mnemonicParsing="false" text="USE TOOL" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="70.0" />
+            <Button fx:id="actionPaneCancel" layoutX="52.0" layoutY="124.0" mnemonicParsing="false" text="CANCEL" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="120.0" />
          </children>
       </AnchorPane>
    </children>

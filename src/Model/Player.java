@@ -130,8 +130,16 @@ public class Player {
 
 	public void useTool(int toolIndex, Tile tile){
 	    boolean pwede = true;
-	    if(toolIndex == 1 && )
-		tools.get(toolIndex).useTool(tile);
+	    switch(toolIndex){
+            case 0 : break;
+            case 1 : if(tile.getHeldCrop().getNoOfWaters() >= tile.getHeldCrop().getWaterNeeded());
+                    break;
+            case 2 : break;
+            case 3 : break;
+        }
+
+	    if (pwede == true)
+		    tools.get(toolIndex).useTool(tile);
 	}
 
     public ArrayList<Tool> getTools() {

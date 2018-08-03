@@ -4,9 +4,8 @@ import Model.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -15,27 +14,58 @@ import javafx.scene.layout.TilePane;
 
 public class GameController {
     @FXML private GridPane lotGrid;
+    @FXML private TilePane seedDisplay;
+    @FXML private AnchorPane actionPane;
     @FXML private ImageView pickaxe;
     @FXML private ImageView wateringCan;
     @FXML private ImageView plow;
     @FXML private ImageView fertilizer;
-    @FXML private TilePane seedDisplay;
-    @FXML private Label stuffInfo;
-    @FXML private AnchorPane actionPane;
+    @FXML private Label infoStuff;
+    @FXML private Button actionPaneBuy;
+    @FXML private Button actionPaneCancel;
+    @FXML private Button actionPaneUse;
 
     private Player p;
 
     public void initialize(){
+        actionPane.setVisible(false);
+
         pickaxe.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                p.buySeeds();
+                infoStuff.setText(p.getTools().get(0).getInformation());
+
+                actionPane.setVisible(true);
+                actionPaneBuy.setVisible(false);
             }
         });
         wateringCan.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                stuffInfo.setText(p.getTools().get(1).getInformation());
+                infoStuff.setText(p.getTools().get(1).getInformation());
+
+                actionPane.setVisible(true);
+                actionPaneBuy.setVisible(false);
+            }
+        });
+
+        plow.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                infoStuff.setText(p.getTools().get(2).getInformation());
+
+                actionPane.setVisible(true);
+                actionPaneBuy.setVisible(false);
+            }
+        });
+
+        fertilizer.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                infoStuff.setText(p.getTools().get(3).getInformation());
+
+                actionPane.setVisible(true);
+                actionPaneBuy.setVisible(false);
             }
         });
 
@@ -47,15 +77,12 @@ public class GameController {
                 }
             });
 
-
-
-        /*addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    textField.setText(p.getLot().getTile(1, 1).toString().replace("[","").replace("]", ""));
-                }
-    });*/
-
+        actionPaneCancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                actionPane.setVisible(false);
+            }
+        });
     }
 
     public void setModel(Player p){
