@@ -104,7 +104,7 @@ public class Player {
 	public void plantSeeds(Tile tile) {
 		//connect to controller what to return
 		Crop c = new Crop("Turnip", "xD", 1, 1, 0, 1, 1, 5, 6, 0, 1);
-		//controller should return c?? which repzresents what crop user chose
+		//controller should return c?? which represents what crop user chose
 		if (seeds.contains(c) == true)
 			for (int i = 0; i < seeds.size(); i++)
 				if (seeds.get(i).equals(c)) {
@@ -116,16 +116,6 @@ public class Player {
 
 	public void harvestCrop(Tile tile) {
 
-	}
-
-	public ArrayList<Crop> getSeeds() {
-		seeds.add(new Crop("Turnip", "Vegetable", 60, 5, 3, 5, 7, 9, 10, 20, 20));
-		return seeds;
-	}
-
-	public Lot getLot() {
-
-		return lot;
 	}
 
 	public void useTool(int toolIndex, Tile tile){
@@ -149,7 +139,48 @@ public class Player {
 		    tools.get(toolIndex).useTool(tile);
 	}
 
-    public ArrayList<Tool> getTools() {
-        return tools;
+	public void setLevel(int level){
+	    this.level = level;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getXp() {
+        return xp;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public String getFarmerType(){
+	    return types[curType].getType();
+    }
+
+    public int getOC(){
+	    return OC;
+    }
+
+    public int getCurType() {
+        return curType;
+    }
+
+    public Type[] getTypes() {
+        return types;
+    }
+
+    public ArrayList<Tool> getTools() {
+		return tools;
+	}
+
+	public ArrayList<Crop> getSeeds() {
+		seeds.add(new Crop("Turnip", "Vegetable", 1, 5, 3, 5, 7, 9, 10, 20, 20));
+		return seeds;
+	}
+
+	public Lot getLot() {
+		return lot;
+	}
 }

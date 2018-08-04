@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
 import java.util.Random;
 
@@ -24,6 +23,7 @@ public class GameController {
     @FXML private ImageView seeds;
     @FXML private Label infoStuff;
     @FXML private Label name;
+    @FXML private Label level;
     @FXML private Label xp;
     @FXML private Label type;
     @FXML private Label oc;
@@ -44,8 +44,8 @@ public class GameController {
     @FXML private ImageView orange;
 
     private Random r = new Random();
-
     private Player p;
+    private String source;
 
     public void initialize(){
         actionPane.setVisible(false);
@@ -107,6 +107,8 @@ public class GameController {
                 actionPaneBuy.setVisible(true);
                 actionPaneUse.setVisible(true);
                 infoStuff.setText(new Crop("Turnip", "Vegetable", 1, 1, 0, 1, 1, 5, 6, 0, 1).toString());
+                ImageView i = (ImageView) event.getSource();
+                source = i.getId();
             }
         });
 
@@ -230,11 +232,18 @@ public class GameController {
             });
         }
 
+
         actionPaneBuy.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 seedDisplay.setVisible(false);
                 actionPane.setVisible(false);
+                infoStuff.setText("i love hime");
+                switch (source) {
+                    case "turnip":
+                        p.getSeeds().add(new Crop("Turnip", "Vegetable", 1 * 60 - (1 * 60 * p.getTypes()[p.getCurType()].getHrvstTimeBonus(), 1, )));
+                        break;
+                }
             }
         });
 
@@ -246,12 +255,34 @@ public class GameController {
                 infoStuff.setText("i love hime");
             }
         });
+
     }
 
-    public void update(){
+    public void updateLevel(){
 
     }
     public void setModel(Player p){
         this.p = p;
+        name.setText(p.getName());
+        level.setText("" + p.getLevel());
+        xp.setText("XP : " + p.getXp() + " / " + (5 * (p.getLevel() + 1)));
+        type.setText("Type: " + p.getFarmerType());
+        oc.setText("OC: " + p.getOC());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

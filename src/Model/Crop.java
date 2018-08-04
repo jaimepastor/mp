@@ -23,7 +23,7 @@ public class Crop
     public Crop(String sn, String type, double ht, int wn, int fn, int hc, int npp, int sc, double bp, int cb, int xp){
         this.seedName = sn;
         this.type = type;
-        this.harvestTime = ht * 60;//in seconds
+        this.harvestTime = ht;//in seconds as soon as it is passed
         this.waterNeeded = wn;
         this.fertilizerNeeded = fn;
         this.harvestCost = hc;
