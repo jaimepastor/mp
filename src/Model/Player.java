@@ -176,7 +176,7 @@ public class Player {
 	}
 
 	public ArrayList<Crop> getSeeds() {
-		seeds.add(new Crop("Turnip", "Vegetable", 1, 5, 3, 5, 7, 9, 10, 20, 20));
+		//seeds.add(new Crop("Turnip", "Vegetable", 1, 5, 3, 5, 7, 9, 10, 20, 20));
 		return seeds;
 	}
 

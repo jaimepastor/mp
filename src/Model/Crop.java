@@ -23,7 +23,7 @@ public class Crop
     public Crop(String sn, String type, double ht, int wn, int fn, int hc, int npp, int sc, double bp, int cb, int xp){
         this.seedName = sn;
         this.type = type;
-        this.harvestTime = ht;//in seconds as soon as it is passed
+        this.harvestTime = ht * 60;//converts harvest time to seconds
         this.waterNeeded = wn;
         this.fertilizerNeeded = fn;
         this.harvestCost = hc;
@@ -124,6 +124,7 @@ public class Crop
     public String toString() {
         return  "Seed Name: " + seedName +
                 "\nCrop type: " + type +
+                "\nHarvest Time: " + harvestTime +
                 "\nBase Price: " + basePrice +
                 "\nSeed Cost: " + seedCost +
                 "\nNeeded amount of Fertilizer: " + fertilizerNeeded +

@@ -1,11 +1,11 @@
 package Controller;
 
 import Model.*;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -42,6 +42,7 @@ public class GameController {
     @FXML private ImageView apple;
     @FXML private ImageView banana;
     @FXML private ImageView orange;
+    @FXML private Tooltip t;
 
     private Random r = new Random();
     private Player p;
@@ -228,10 +229,10 @@ public class GameController {
                 public void handle(MouseEvent event) {
                     System.out.println("" + x % 10 + "" + x / 10);
                     System.out.println("" + p.getLot().getTile(x / 10, x % 10));
+
                 }
             });
         }
-
 
         actionPaneBuy.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -241,11 +242,17 @@ public class GameController {
                 infoStuff.setText("i love hime");
                 switch (source) {
                     case "turnip":
-                        p.getSeeds().add(new Crop("Turnip", "Vegetable", 1 * 60 - (1 * 60 * p.getTypes()[p.getCurType()].getHrvstTimeBonus(), 1, )));
+                        p.getSeeds().add(new Crop("Turnip", "Vegetable",
+                                1  - (p.getTypes()[1].getHrvstTimeBonus() / 100.0), 1, 0, 1, 1, 5, 6, 0, 1));
+                        infoStuff.setText(p.getSeeds().get(0).toString());
                         break;
                 }
             }
         });
+
+        t = new Tooltip();
+        t.setText("nig");
+        infoStuff.setTooltip(t);
 
         actionPaneCancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
