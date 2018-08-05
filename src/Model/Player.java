@@ -23,7 +23,7 @@ public class Player {
 	public Player(String name, GameController gc) {
 		this.name = name;
 		this.lot = new Lot();
-		this.OC = 100;
+		this.OC = 0;
 		this.xp = 0;
 		this.level = 1;
 		this.isRegistered = false;
@@ -31,6 +31,7 @@ public class Player {
 		this.tools = new ArrayList<Tool>();
 		this.seeds = new ArrayList<Crop>();
 		this.noOfFertilizers = 5;
+		this.gameController = gc;
 
 		this.gameController = gc;
 		initializeFarmerTypes();
@@ -96,9 +97,12 @@ public class Player {
 		}
 	}
 
-	public void buySeeds() {
-		displaySeeds();
-		//control
+	public void buySeeds(Crop crop) {
+		if(crop.getSeedCost() > OC)
+			gameController.displayBuyFail(crop.getSeedCost() - OC);
+		else
+			seeds.add(crop);
+
 	}
 
 	public void plantSeeds(Tile tile) {
@@ -139,6 +143,14 @@ public class Player {
 		    tools.get(toolIndex).useTool(tile);
 	}
 
+	public int computeNoOfSeedType(String seedName){
+		int x = 0;//no of found seeds
+		for(int i = 0; i < seeds.size(); i++)
+			if(seeds.get(i).getSeedName().equalsIgnoreCase(seedName) == true)
+				x++;
+
+		return x;
+	}
 	public void setLevel(int level){
 	    this.level = level;
     }

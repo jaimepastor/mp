@@ -59,6 +59,9 @@ public class GameController {
 
                 actionPane.setVisible(true);
                 actionPaneBuy.setVisible(false);
+                actionPaneUse.setVisible(true);
+                ImageView i = (ImageView) event.getSource();
+                source = i.getId();
             }
         });
         wateringCan.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -68,6 +71,9 @@ public class GameController {
 
                 actionPane.setVisible(true);
                 actionPaneBuy.setVisible(false);
+                actionPaneUse.setVisible(true);
+                ImageView i = (ImageView) event.getSource();
+                source = i.getId();
             }
         });
 
@@ -78,6 +84,9 @@ public class GameController {
 
                 actionPane.setVisible(true);
                 actionPaneBuy.setVisible(false);
+                actionPaneUse.setVisible(true);
+                ImageView i = (ImageView) event.getSource();
+                source = i.getId();
             }
         });
 
@@ -88,6 +97,9 @@ public class GameController {
 
                 actionPane.setVisible(true);
                 actionPaneBuy.setVisible(false);
+                actionPaneUse.setVisible(true);
+                ImageView i = (ImageView) event.getSource();
+                source = i.getId();
             }
         });
 
@@ -107,7 +119,7 @@ public class GameController {
                 actionPane.setVisible(true);
                 actionPaneBuy.setVisible(true);
                 actionPaneUse.setVisible(true);
-                infoStuff.setText(new Crop("Turnip", "Vegetable", 1, 1, 0, 1, 1, 5, 6, 0, 1).toString());
+                infoStuff.setText(new Crop("Turnip", "Vegetable", 1, 1, 0, 1, 1, 5, 6, 0, 1).toString() + p.computeNoOfSeedType("turnip"));
                 ImageView i = (ImageView) event.getSource();
                 source = i.getId();
             }
@@ -120,6 +132,8 @@ public class GameController {
                 actionPaneBuy.setVisible(true);
                 actionPaneUse.setVisible(true);
                 infoStuff.setText(new Crop("Carrot", "Vegetable", 1.5, 1, 0, 1, r.nextInt(2) + 1, 10, 9, 0, 2).toString());
+                ImageView i = (ImageView) event.getSource();
+                source = i.getId();
             }
         });
 
@@ -130,6 +144,8 @@ public class GameController {
                 actionPaneBuy.setVisible(true);
                 actionPaneUse.setVisible(true);
                 infoStuff.setText(new Crop("Tomato", "Vegetable", 2.5, 3, 1, 1, r.nextInt(3) + 1, 20, 15, 0, 3).toString());
+                ImageView i = (ImageView) event.getSource();
+                source = i.getId();
             }
         });
 
@@ -140,6 +156,8 @@ public class GameController {
                 actionPaneBuy.setVisible(true);
                 actionPaneUse.setVisible(true);
                 infoStuff.setText(new Crop("Potato", "Vegetable", 5, 4, 2, 1, r.nextInt(6) + 1, 25, 13, 0, 4).toString());
+                ImageView i = (ImageView) event.getSource();
+                source = i.getId();
             }
         });
 
@@ -150,6 +168,8 @@ public class GameController {
                 actionPaneBuy.setVisible(true);
                 actionPaneUse.setVisible(true);
                 infoStuff.setText(new Crop("Rose", "Flower", 1, 1, 0, 2, 1, 5, 5, 2, 1).toString());
+                ImageView i = (ImageView) event.getSource();
+                source = i.getId();
             }
         });
 
@@ -160,6 +180,8 @@ public class GameController {
                 actionPaneBuy.setVisible(true);
                 actionPaneUse.setVisible(true);
                 infoStuff.setText(new Crop("Tulip", "Flower", 1.5, 2, 0, 2, 1, 7, 7, 2, 3).toString());
+                ImageView i = (ImageView) event.getSource();
+                source = i.getId();
             }
         });
 
@@ -170,6 +192,8 @@ public class GameController {
                 actionPaneBuy.setVisible(true);
                 actionPaneUse.setVisible(true);
                 infoStuff.setText(new Crop("Stargazer", "Flower", 2.5, 2, 0, 2, 1, 10, 9, 2, 5).toString());
+                ImageView i = (ImageView) event.getSource();
+                source = i.getId();
             }
         });
 
@@ -180,6 +204,8 @@ public class GameController {
                 actionPaneBuy.setVisible(true);
                 actionPaneUse.setVisible(true);
                 infoStuff.setText(new Crop("Sunflower", "Flower", 3.5, 2, 1, 2, 1, 20, 19, 2, 7).toString());
+                ImageView i = (ImageView) event.getSource();
+                source = i.getId();
             }
         });
         mango.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -189,6 +215,8 @@ public class GameController {
                 actionPaneBuy.setVisible(true);
                 actionPaneUse.setVisible(true);
                 infoStuff.setText(new Crop("Mango", "Fruit Tree", 7, 7, 4, 3, r.nextInt(6) + 5, 50, 4, 0, 2).toString());
+                ImageView i = (ImageView) event.getSource();
+                source = i.getId();
             }
         });
 
@@ -199,6 +227,8 @@ public class GameController {
                 actionPaneBuy.setVisible(true);
                 actionPaneUse.setVisible(true);
                 infoStuff.setText(new Crop("Apple", "Fruit Tree", 7, 7, 5, 3, r.nextInt(4) + 7, 55, 3.5, 0, 4).toString());
+                ImageView i = (ImageView) event.getSource();
+                source = i.getId();
             }
         });
 
@@ -209,6 +239,8 @@ public class GameController {
                 actionPaneBuy.setVisible(true);
                 actionPaneUse.setVisible(true);
                 infoStuff.setText(new Crop("Banana", "Fruit Tree", 8, 8, 5, 3, r.nextInt(6) + 10, 60, 3.5, 0, 6).toString());
+                ImageView i = (ImageView) event.getSource();
+                source = i.getId();
             }
         });
 
@@ -219,6 +251,8 @@ public class GameController {
                 actionPaneBuy.setVisible(true);
                 actionPaneUse.setVisible(true);
                 infoStuff.setText(new Crop("Orange", "Fruit Tree", 8, 8, 6, 3, r.nextInt(3) + 13, 65, 4.5, 0, 8).toString());
+                ImageView i = (ImageView) event.getSource();
+                source = i.getId();
             }
         });
 
@@ -242,17 +276,26 @@ public class GameController {
                 infoStuff.setText("i love hime");
                 switch (source) {
                     case "turnip":
-                        p.getSeeds().add(new Crop("Turnip", "Vegetable",
-                                1  - (p.getTypes()[1].getHrvstTimeBonus() / 100.0), 1, 0, 1, 1, 5, 6, 0, 1));
-                        infoStuff.setText(p.getSeeds().get(0).toString());
+                        p.buySeeds(new Crop("Turnip", "Vegetable",
+                            1  - (p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100.0), 1, 0, 1, 1, 5, 6, 0, 1));
                         break;
+                    case "carrot" :
+
+                        break;
+                    default : infoStuff.setText("XDDDDDDddd");
                 }
             }
         });
 
-        t = new Tooltip();
-        t.setText("nig");
-        infoStuff.setTooltip(t);
+        actionPaneUse.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                switch(source){
+                    case "turnip" :
+                        break;
+                }
+            }
+        });
 
         actionPaneCancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -268,28 +311,16 @@ public class GameController {
     public void updateLevel(){
 
     }
-    public void setModel(Player p){
+    public void setModel(Player p) {
         this.p = p;
         name.setText(p.getName());
         level.setText("" + p.getLevel());
         xp.setText("XP : " + p.getXp() + " / " + (5 * (p.getLevel() + 1)));
         type.setText("Type: " + p.getFarmerType());
         oc.setText("OC: " + p.getOC());
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public void displayBuyFail(int kulang){
+        infoStuff.setText("Missing " + kulang + " coins!");
     }
 }
