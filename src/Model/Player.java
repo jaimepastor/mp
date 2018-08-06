@@ -23,11 +23,11 @@ public class Player {
 	public Player(String name, GameController gc) {
 		this.name = name;
 		this.lot = new Lot();
-		this.OC = 0;
+		this.OC = 100;
 		this.xp = 0;
 		this.level = 1;
 		this.isRegistered = false;
-		this.curType = 0;
+		this.curType = 1;
 		this.tools = new ArrayList<Tool>();
 		this.seeds = new ArrayList<Crop>();
 		this.noOfFertilizers = 5;
@@ -100,8 +100,12 @@ public class Player {
 	public void buySeeds(Crop crop) {
 		if(crop.getSeedCost() > OC)
 			gameController.displayBuyFail(crop.getSeedCost() - OC);
-		else
+		else{
 			seeds.add(crop);
+			OC = OC - crop.getSeedCost();
+			gameController.displayNewSeed(seeds.get(seeds.size()-1).toString());
+			gameController.update();
+		}
 
 	}
 
