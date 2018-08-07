@@ -264,30 +264,15 @@ public class GameController {
             }
         });
 
-//        for(int i = 0; i < 50; i++) {
-//            final int x = i;
-            lot.getChildren().get(0).setOnMouseClicked(new EventHandler<MouseEvent>() {
+        for(int i = 0; i < 50; i++) {
+            final int x = i;
+            lot.getChildren().get(x).setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    switch(source){
-                        case "turnip" :
-                        case "carrot" :
-                        case "tomato" :
-                        case "potato" :
-                        case "rose" :
-                        case "tulip" :
-                        case "stargazer" :
-                        case "sunflower" :
-                        case "mango" :
-                        case "apple" :
-                        case "banana" :
-                        case "orange" : p.plantSeeds(p.getLot().getTile(0), source);
-                            break;
-
-                    }
+                        infoStuff.setText(p.getLot().getTile(x).toString());
                 }
             });
-//        }
+        }
 
         actionPaneBuy.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -357,6 +342,7 @@ public class GameController {
             public void handle(MouseEvent event) {
                 switch(source){
                     case "turnip" : infoStuff.setText("Choose a Tile!");
+                        break;
                 }
             }
         });
@@ -366,7 +352,6 @@ public class GameController {
             public void handle(MouseEvent event) {
                 actionPane.setVisible(false);
                 seedDisplay.setVisible(false);
-                infoStuff.setText(lot.getChildren().get(0).toString());
             }
         });
 
@@ -417,8 +402,12 @@ public class GameController {
         infoStuff.setText("Cannot use " + tool + "!");
     }
 
-    public void displayNewInfo(String info){
+    public void displayInfo(String info){
         infoStuff.setText(info);
+    }
+
+    public void displaySuccess(){
+        infoStuff.setText("SUCCESS BIIIIIIITCH");
     }
 
 

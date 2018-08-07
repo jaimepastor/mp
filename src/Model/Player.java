@@ -100,13 +100,32 @@ public class Player {
 		}
 	}
 
+    public int computeNoOfSeedType(String seedName){
+        int x = 0;//no of found seeds
+        for(int i = 0; i < seeds.size(); i++)
+            if(seeds.get(i).getSeedName().equalsIgnoreCase(seedName) == true)
+                x++;
+
+        return x;
+    }
+
+    public Crop getCrop(String name){
+        for(int i = 0; i < seeds.size(); i++){
+            if(seeds.get(i).getSeedName().equalsIgnoreCase(name)){
+                return seeds.remove(i);
+            }
+        }
+
+        return null;
+    }
+
 	public void buySeeds(Crop crop) {
 		if(crop.getSeedCost() > OC)
 			gameController.displayBuyFail(crop.getSeedCost() - OC);
 		else{
 			seeds.add(crop);
 			OC = OC - crop.getSeedCost();
-			gameController.displayNewInfo("New seed! Information:\n" + seeds.get(seeds.size()-1).toString());
+			gameController.displayInfo("New seed! Information:\n" + seeds.get(seeds.size()-1).toString());
 			gameController.update();
 		}
 	}
@@ -124,12 +143,12 @@ public class Player {
 	public void plantSeeds(Tile tile, String crop) {
 		//connect to controller what to return
 		//controller should return c?? which represents what crop user chose
-		if (seeds.contains(crop) == true)
-			for (int i = 0; i < seeds.size(); i++)
-				if (seeds.get(i).equals(c)) {
-					tile.setHeldCrop(seeds.remove(i));
-				} else
-					System.out.println("nani");
+            for (int i = 0; i < seeds.size(); i++)
+                if (seeds.get(i).getSeedName().equalsIgnoreCase(crop)) {
+                    tile.setHeldCrop(getCrop(name));
+                    gameController.displaySuccess();
+                } else
+                    System.out.println("nani");
 		//controller -> seed does not exist booboooo
 	}
 
@@ -160,15 +179,6 @@ public class Player {
 
 	    if (pwede == true)
 		    tools.get(toolIndex).useTool(tile);
-	}
-
-	public int computeNoOfSeedType(String seedName){
-		int x = 0;//no of found seeds
-		for(int i = 0; i < seeds.size(); i++)
-			if(seeds.get(i).getSeedName().equalsIgnoreCase(seedName) == true)
-				x++;
-
-		return x;
 	}
 	public void setLevel(int level){
 	    this.level = level;

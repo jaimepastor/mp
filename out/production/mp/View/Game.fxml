@@ -111,7 +111,7 @@
          <children>
             <Label fx:id="infoStuff" alignment="TOP_LEFT" layoutX="19.0" layoutY="88.0" prefHeight="164.0" prefWidth="362.0" text="Information goes here." wrapText="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                <font>
-                  <Font name="Cambria" size="10.0" />
+                  <Font name="Cambria" size="12.0" />
                </font></Label>
          </children>
       </AnchorPane>

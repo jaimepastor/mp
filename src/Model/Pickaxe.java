@@ -10,6 +10,7 @@ public class Pickaxe extends Tool
     public void useTool(Tile tile){
         tile.setRockStatus(false);
         tile.setSpaceStatus(false);
+
     }
 
     @Override
