@@ -263,7 +263,6 @@ public class GameController {
                 public void handle(MouseEvent event) {
                     System.out.println("" + x % 10 + "" + x / 10);
                     System.out.println("" + p.getLot().getTile(x / 10, x % 10));
-
                 }
             });
         }
@@ -301,20 +300,28 @@ public class GameController {
                         break;
                     case "stargazer" :
                          p.buySeeds(new Crop("Stargazer", "Flower",
-                                 2.5 - (2.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100), 2, 0, 2, 1, 10, 9, 2, 5));
+                             2.5 - (2.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100), 2, 0, 2, 1, 10, 9, 2, 5));
                         break;
                     case "sunflower" :
-                        p.buySeeds(new Crop("Sunflower", "Flower", 3.5, 2, 1, 2, 1, 20, 19, 2, 7));
+                        p.buySeeds(new Crop("Sunflower", "Flower",
+                            3.5 - (3.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100), 2, 1, 2, 1, 20, 19, 2, 7));
                         break;
                     case "mango" :
+                        p.buySeeds(new Crop("Mango", "Fruit Tree",
+                            7 - (7 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100), 7, 4, 3, r.nextInt(6) + 5, 50, 4, 0, 2));
                         break;
                     case "apple" :
+                        p.buySeeds(new Crop("Apple", "Fruit Tree",
+                            7 - (7 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100), 7, 5, 3, r.nextInt(4) + 7, 55, 3.5, 0, 4));
                         break;
                     case "banana" :
+                        p.buySeeds(new Crop("Banana", "Fruit Tree",
+                            8 - (8 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100), 8, 5, 3, r.nextInt(6) + 10, 60, 3.5, 0, 6));
                         break;
                     case "orange" :
+                        p.buySeeds(new Crop("Orange", "Fruit Tree",
+                            8 - (8 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100), 8, 6, 3, r.nextInt(3) + 13, 65, 4.5, 0, 8));
                         break;
-                    default : infoStuff.setText("XDDDDDDddd");
                 }
             }
         });
@@ -353,6 +360,11 @@ public class GameController {
         xp.setText("XP : " + p.getXp() + " / " + (5 * (p.getLevel() + 1)));
         type.setText("Type: " + p.getFarmerType());
         oc.setText("OC: " + p.getOC());
+        for(int i = 0; i < 50; i++){
+            if(p.getLot().getTile(i / 10, i % 10).getRockStatus()){//ROCKDIMIZER
+                lot.getChildren().get(i).setVisible(false);
+            }
+        }
     }
 
     public void displayBuyFail(int kulang){

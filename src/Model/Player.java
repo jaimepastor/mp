@@ -47,10 +47,10 @@ public class Player {
 	}
 
 	private void initializeTools() {
-		this.tools.add(new Pickaxe("Pickaxe", "nigeria"));
-		this.tools.add(new WateringCan("Watering Can", "nigeria"));
-		this.tools.add(new Plow("Plow", "nigeria"));
-		this.tools.add(new Fertilizer("Fertilizer", "nigeria"));
+		this.tools.add(new Pickaxe("Pickaxe", "Picks axes"));
+		this.tools.add(new WateringCan("Watering Can", "Waters cans"));
+		this.tools.add(new Plow("Plow", "P's lows"));
+		this.tools.add(new Fertilizer("Fertilizer", "Fertis lizers"));
 	}
 
 	private void displaySeeds() {

@@ -13,13 +13,13 @@ public class Tile
     private boolean witherStatus;
     private Crop heldCrop;
 
-    public Tile(int yCoord, int xCoord){
+    public Tile(int yCoord, int xCoord, boolean rock){
         this.xCoord = xCoord;
         this.yCoord = yCoord;
         this.plowStatus = false;
         this.waterStatus = false;
         this.spaceStatus = true;
-        this.rockStatus = false;
+        this.rockStatus = rock;
         this.witherStatus = false;
         this.heldCrop = null;
     }
