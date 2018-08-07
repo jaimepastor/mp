@@ -23,13 +23,13 @@ public class Player {
 	public Player(String name, GameController gc) {
 		this.name = name;
 		this.lot = new Lot();
-		this.OC = 100;
+		this.OC = 10000;
 		this.xp = 0;
-		this.level = 1;
+		this.level = 15 ;
 		this.isRegistered = false;
 		this.curType = 1;
-		this.tools = new ArrayList<Tool>();
-		this.seeds = new ArrayList<Crop>();
+		this.tools = new ArrayList<>();
+		this.seeds = new ArrayList<>();
 		this.noOfFertilizers = 5;
 		this.gameController = gc;
 
@@ -87,11 +87,14 @@ public class Player {
 		if (curType < 3) {
 			if (level >= types[curType + 1].getLevelReq())
 				if (OC >= types[curType + 1].getRegFee()) {
-					//present choice of levelling up
-					//if yes, level up (includes curType++) with display, if no return to menu
+					curType++;
+					OC = OC - types[curType].getRegFee();
+					gameController.update();
 				} else {
-					//display not enough coins
-				}
+                    gameController.displayBuyFail(types[curType + 1].getRegFee() - OC);
+                }
+            else
+                gameController.displayLevelFail(types[curType + 1].getLevelReq() - level);
 		} else {
 			//display cannot upgrade anymore!
 		}
@@ -103,11 +106,20 @@ public class Player {
 		else{
 			seeds.add(crop);
 			OC = OC - crop.getSeedCost();
-			gameController.displayNewSeed(seeds.get(seeds.size()-1).toString());
+			gameController.displayNewInfo("New seed! Information:\n" + seeds.get(seeds.size()-1).toString());
 			gameController.update();
 		}
-
 	}
+
+	public void buyFertilizer(){
+		if(10 > OC)
+		    gameController.displayBuyFail(10 - OC);
+		else{
+            noOfFertilizers++;
+            OC -= 10;
+            gameController.update();
+        }
+    }
 
 	public void plantSeeds(Tile tile) {
 		//connect to controller what to return
@@ -171,10 +183,6 @@ public class Player {
         return level;
     }
 
-    public String getFarmerType(){
-	    return types[curType].getType();
-    }
-
     public int getOC(){
 	    return OC;
     }
@@ -182,6 +190,13 @@ public class Player {
     public int getCurType() {
         return curType;
     }
+
+    public int getNoOfFertilizers() {
+		return noOfFertilizers;
+	}
+	public String getFarmerType(){
+		return types[curType].getType();
+	}
 
     public Type[] getTypes() {
         return types;

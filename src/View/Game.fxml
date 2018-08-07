@@ -44,7 +44,7 @@
             </ImageView>
          </items>
       </ToolBar>
-      <TilePane fx:id="seedDisplay" layoutX="415.0" layoutY="10.0" prefHeight="320.0" prefWidth="422.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="100.0">
+      <TilePane fx:id="seedDisplay" layoutX="415.0" layoutY="10.0" prefHeight="318.0" prefWidth="422.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="100.0">
          <children>
             <ImageView fx:id="turnip" fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -135,9 +135,10 @@
                   <Label fx:id="name" prefHeight="18.0" prefWidth="251.0" text="NAME" textAlignment="CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+            <AnchorPane prefHeight="58.0" prefWidth="150.0" GridPane.columnIndex="1">
                <children>
-                  <Label fx:id="level" prefHeight="18.0" prefWidth="251.0" text="LEVEL" textAlignment="CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+                  <Label fx:id="level" prefHeight="18.0" prefWidth="251.0" text="LEVEL" textAlignment="CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="20.0" />
+                  <Button fx:id="update" layoutX="168.0" layoutY="18.0" mnemonicParsing="false" text="UPDATE" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
@@ -160,7 +161,7 @@
       <AnchorPane fx:id="actionPane" layoutX="507.0" layoutY="496.0" prefHeight="181.0" prefWidth="204.0">
          <children>
             <Button fx:id="actionPaneBuy" layoutX="45.0" layoutY="21.0" mnemonicParsing="false" text="BUY" AnchorPane.bottomAnchor="119.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="21.0" />
-            <Button fx:id="actionPaneUse" layoutX="52.0" layoutY="69.0" mnemonicParsing="false" text="USE TOOL" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="70.0" />
+            <Button fx:id="actionPaneUse" layoutX="52.0" layoutY="69.0" mnemonicParsing="false" text="USE" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="70.0" />
             <Button fx:id="actionPaneCancel" layoutX="52.0" layoutY="124.0" mnemonicParsing="false" text="CANCEL" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="120.0" />
          </children>
       </AnchorPane>

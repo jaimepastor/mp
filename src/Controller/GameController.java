@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.*;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -30,6 +31,7 @@ public class GameController {
     @FXML private Button actionPaneBuy;
     @FXML private Button actionPaneCancel;
     @FXML private Button actionPaneUse;
+    @FXML private Button update;
     @FXML private ImageView turnip;
     @FXML private ImageView carrot;
     @FXML private ImageView tomato;
@@ -93,10 +95,9 @@ public class GameController {
         fertilizer.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                infoStuff.setText(p.getTools().get(3).getInformation());
-
+                infoStuff.setText(p.getTools().get(3).getInformation() + "\nNo of Fertilizers: " + p.getNoOfFertilizers());
                 actionPane.setVisible(true);
-                actionPaneBuy.setVisible(false);
+                actionPaneBuy.setVisible(true);
                 actionPaneUse.setVisible(true);
                 ImageView i = (ImageView) event.getSource();
                 source = i.getId();
@@ -322,6 +323,10 @@ public class GameController {
                         p.buySeeds(new Crop("Orange", "Fruit Tree",
                             8 - (8 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100), 8, 6, 3, r.nextInt(3) + 13, 65, 4.5, 0, 8));
                         break;
+                    case "fertilizer" :
+                        p.buyFertilizer();
+                        infoStuff.setText("Bought one new fertilizer!");
+                        break;
                 }
             }
         });
@@ -345,6 +350,12 @@ public class GameController {
             }
         });
 
+        update.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                p.updateFarmerType();
+            }
+        });
     }
 
     public void update(){
@@ -352,6 +363,9 @@ public class GameController {
         xp.setText("XP : " + p.getXp() + " / " + (5 * (p.getLevel() + 1)));
         type.setText("Type: " + p.getFarmerType());
         oc.setText("OC: " + p.getOC());
+        if(p.getLevel() >= p.getTypes()[p.getCurType() + 1].getLevelReq()){
+            update.setVisible(true);
+        }
     }
     public void setModel(Player p) {
         this.p = p;
@@ -371,7 +385,15 @@ public class GameController {
         infoStuff.setText("Missing " + kulang + " coins!");
     }
 
-    public void displayNewSeed(String info){
+    public void displayLevelFail(int kulang){
+        String extra;
+        if(kulang == 1)
+            extra = " more level to to be eligible for upgrading.";
+        else
+            extra = " more levels to be eligible for upgrading.";
+        infoStuff.setText("You need " + kulang + extra);
+    }
+    public void displayNewInfo(String info){
         infoStuff.setText(info);
     }
 }

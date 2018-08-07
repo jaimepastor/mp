@@ -75,17 +75,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="363" column="80" selection-start-line="363" selection-start-column="80" selection-end-line="363" selection-end-column="80" />
+            <state relative-caret-position="434">
+              <caret line="393" column="54" lean-forward="true" selection-start-line="393" selection-start-column="54" selection-end-line="393" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#15896#15897#0" expanded="true" />
-                <element signature="e#15962#15963#0" expanded="true" />
-                <element signature="e#16008#16009#0" expanded="true" />
-                <element signature="e#16047#16048#0" expanded="true" />
+                <element signature="e#15609#15610#0" expanded="true" />
+                <element signature="e#15661#15662#0" expanded="true" />
+                <element signature="e#16331#16332#0" expanded="true" />
+                <element signature="e#16397#16398#0" expanded="true" />
+                <element signature="e#16443#16444#0" expanded="true" />
+                <element signature="e#16482#16483#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -105,13 +107,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Player.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Model/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="52" column="66" selection-start-line="52" selection-start-column="66" selection-end-line="52" selection-end-column="66" />
+            <state relative-caret-position="352">
+              <caret line="96" column="48" selection-start-line="96" selection-start-column="48" selection-end-line="96" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#5566#5567#0" expanded="true" />
+                <element signature="e#5597#5598#0" expanded="true" />
+                <element signature="e#5628#5629#0" expanded="true" />
+                <element signature="e#5655#5656#0" expanded="true" />
+                <element signature="e#5681#5682#0" expanded="true" />
+                <element signature="e#5706#5707#0" expanded="true" />
+                <element signature="e#5735#5736#0" expanded="true" />
+                <element signature="e#5763#5764#0" expanded="true" />
+                <element signature="e#5788#5789#0" expanded="true" />
+                <element signature="e#5810#5811#0" expanded="true" />
+                <element signature="e#5841#5842#0" expanded="true" />
+                <element signature="e#5871#5872#0" expanded="true" />
+                <element signature="e#5910#5911#0" expanded="true" />
+                <element signature="e#5939#5940#0" expanded="true" />
+                <element signature="e#5971#5972#0" expanded="true" />
+                <element signature="e#6009#6010#0" expanded="true" />
+                <element signature="e#6041#6042#0" expanded="true" />
+                <element signature="e#6069#6070#0" expanded="true" />
+                <element signature="e#6110#6111#0" expanded="true" />
+                <element signature="e#6129#6130#0" expanded="true" />
+                <element signature="e#6288#6289#0" expanded="true" />
+                <element signature="e#6305#6306#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -157,6 +181,7 @@
       <find>Selling</find>
       <find>stuff</find>
       <find>lot</find>
+      <find>fertili</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -220,9 +245,9 @@
         <option value="$PROJECT_DIR$/src/View/Game.fxml" />
         <option value="$PROJECT_DIR$/src/Model/Crop.java" />
         <option value="$PROJECT_DIR$/src/Model/Tile.java" />
-        <option value="$PROJECT_DIR$/src/Controller/GameController.java" />
         <option value="$PROJECT_DIR$/src/Model/Lot.java" />
         <option value="$PROJECT_DIR$/src/Model/Player.java" />
+        <option value="$PROJECT_DIR$/src/Controller/GameController.java" />
       </list>
     </option>
   </component>
@@ -353,12 +378,12 @@
       <workItem from="1533362836668" duration="13611000" />
       <workItem from="1533457593997" duration="11415000" />
       <workItem from="1533537824860" duration="14104000" />
-      <workItem from="1533605238562" duration="2825000" />
+      <workItem from="1533605238562" duration="5423000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="158723000" />
+    <option name="totallyTimeSpent" value="161321000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
@@ -579,20 +604,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/GameController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="363" column="80" selection-start-line="363" selection-start-column="80" selection-end-line="363" selection-end-column="80" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#15896#15897#0" expanded="true" />
-            <element signature="e#15962#15963#0" expanded="true" />
-            <element signature="e#16008#16009#0" expanded="true" />
-            <element signature="e#16047#16048#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/Tile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="417">
@@ -613,10 +624,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="52" column="66" selection-start-line="52" selection-start-column="66" selection-end-line="52" selection-end-column="66" />
+        <state relative-caret-position="352">
+          <caret line="96" column="48" selection-start-line="96" selection-start-column="48" selection-end-line="96" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5566#5567#0" expanded="true" />
+            <element signature="e#5597#5598#0" expanded="true" />
+            <element signature="e#5628#5629#0" expanded="true" />
+            <element signature="e#5655#5656#0" expanded="true" />
+            <element signature="e#5681#5682#0" expanded="true" />
+            <element signature="e#5706#5707#0" expanded="true" />
+            <element signature="e#5735#5736#0" expanded="true" />
+            <element signature="e#5763#5764#0" expanded="true" />
+            <element signature="e#5788#5789#0" expanded="true" />
+            <element signature="e#5810#5811#0" expanded="true" />
+            <element signature="e#5841#5842#0" expanded="true" />
+            <element signature="e#5871#5872#0" expanded="true" />
+            <element signature="e#5910#5911#0" expanded="true" />
+            <element signature="e#5939#5940#0" expanded="true" />
+            <element signature="e#5971#5972#0" expanded="true" />
+            <element signature="e#6009#6010#0" expanded="true" />
+            <element signature="e#6041#6042#0" expanded="true" />
+            <element signature="e#6069#6070#0" expanded="true" />
+            <element signature="e#6110#6111#0" expanded="true" />
+            <element signature="e#6129#6130#0" expanded="true" />
+            <element signature="e#6288#6289#0" expanded="true" />
+            <element signature="e#6305#6306#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/GameController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="434">
+          <caret line="393" column="54" lean-forward="true" selection-start-line="393" selection-start-column="54" selection-end-line="393" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#15609#15610#0" expanded="true" />
+            <element signature="e#15661#15662#0" expanded="true" />
+            <element signature="e#16331#16332#0" expanded="true" />
+            <element signature="e#16397#16398#0" expanded="true" />
+            <element signature="e#16443#16444#0" expanded="true" />
+            <element signature="e#16482#16483#0" expanded="true" />
           </folding>
         </state>
       </provider>
