@@ -4,25 +4,24 @@ import java.util.Random;
 
 public class Lot
 {
-    private Tile[][] tiles;
+    private Tile[] tiles;
 
     public Lot(){
-        tiles = new Tile[5][10];
+        tiles = new Tile[50];
         initializeTiles();
     }
 
-    public Tile[][] getTiles() {
+    public Tile[] getTiles() {
         return tiles;
     }
 
-    public Tile getTile(int yCoord, int xCoord){
-        return tiles[yCoord][xCoord];
+    public Tile getTile(int coordinate){
+        return tiles[coordinate];
     }
 
     private void initializeTiles(){
         Random r = new Random();
-        for(int y = 0; y < 5; y++)
-            for(int x = 0; x < 10; x++)
-                tiles[y][x] = new Tile(y, x, r.nextBoolean());//ROCKDIMIZER
+        for(int y = 0; y < 50; y++)
+                tiles[y] = new Tile(y, r.nextBoolean());//ROCKDIMIZER
     }
 }

@@ -4,8 +4,9 @@ import Model.Crop;
 
 public class Tile
 {
-    private int xCoord;
-    private int yCoord;
+    //private int xCoord;
+    //private int yCoord;
+    private int coordinate;
     private boolean plowStatus;
     private boolean waterStatus;
     private boolean spaceStatus;
@@ -13,9 +14,10 @@ public class Tile
     private boolean witherStatus;
     private Crop heldCrop;
 
-    public Tile(int yCoord, int xCoord, boolean rock){
-        this.xCoord = xCoord;
-        this.yCoord = yCoord;
+    public Tile(int coordinate, boolean rock){
+        //this.xCoord = xCoord;
+        //this.yCoord = yCoord;
+        this.coordinate = coordinate;
         this.plowStatus = false;
         this.waterStatus = false;
         this.spaceStatus = true;
@@ -48,12 +50,16 @@ public class Tile
         this.heldCrop = heldCrop;
     }
 
-    public int getxCoord() {
+    /*public int getxCoord() {
         return xCoord;
     }
 
     public int getyCoord() {
         return yCoord;
+    }*/
+
+    public int getCoordinate(){
+        return coordinate;
     }
 
     public boolean getPlowStatus(){
@@ -81,7 +87,7 @@ public class Tile
     }
 
     public String toString(){
-        return "xCoord: " + xCoord + "\nyCoord: " + yCoord + "\nIs Plowed: " + Boolean.toString(plowStatus) + "\nIs Watered: " + Boolean.toString(waterStatus)
+        return "Coordinate: " + coordinate + "\nIs Plowed: " + Boolean.toString(plowStatus) + "\nIs Watered: " + Boolean.toString(waterStatus)
                 + "\nHas Rock: " + Boolean.toString(rockStatus) + "\nHas Space: " + Boolean.toString(spaceStatus) + "\nIs Crop Withered: " + Boolean.toString(witherStatus) + "\nCurrent Crop: "/* + heldCrop.getSeedName()*/;
     }
 }

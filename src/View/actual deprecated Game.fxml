@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xD">
+   <children>
+      <ToolBar layoutX="806.0" layoutY="590.0" prefHeight="102.0" prefWidth="422.0" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0">
+         <items>
+            <ImageView fx:id="wateringCan" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@wateringCan.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="plow" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@plow.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="pickaxe" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@pickaxe.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="fertilizer" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@fertilizer.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="seeds" fitHeight="106.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@seeds.png" />
+               </image>
+            </ImageView>
+         </items>
+      </ToolBar>
+      <TilePane fx:id="seedDisplay" layoutX="415.0" layoutY="10.0" prefHeight="318.0" prefWidth="422.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <ImageView fx:id="turnip" fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@turnip.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="carrot" fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@carrot.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="tomato" fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@tomato.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="potato" fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@potato.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="rose" fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@rose.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="tulip" fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@tulip.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="stargazer" fitHeight="105.0" fitWidth="105.0">
+               <image>
+                  <Image url="@stargazer.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="sunflower" fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@sunflower.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="mango" fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@mango.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="apple" fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@apple.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="banana" fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@banana.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="orange" fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@orange.png" />
+               </image>
+            </ImageView>
+         </children></TilePane>
+      <AnchorPane fx:id="stuffInfo" layoutX="63.0" layoutY="457.0" prefHeight="193.0" prefWidth="391.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0">
+         <children>
+            <Label fx:id="infoStuff" alignment="TOP_LEFT" layoutX="19.0" layoutY="88.0" prefHeight="164.0" prefWidth="362.0" text="Information goes here." wrapText="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+               <font>
+                  <Font name="Cambria" size="10.0" />
+               </font></Label>
+         </children>
+      </AnchorPane>
+      <GridPane fx:id="farmerInfo" gridLinesVisible="true" layoutX="37.0" layoutY="24.0" prefHeight="59.0" prefWidth="1220.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <children>
+                  <Label fx:id="name" prefHeight="18.0" prefWidth="251.0" text="NAME" textAlignment="CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="58.0" prefWidth="150.0" GridPane.columnIndex="1">
+               <children>
+                  <Label fx:id="level" prefHeight="18.0" prefWidth="251.0" text="LEVEL" textAlignment="CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="20.0" />
+                  <Button fx:id="update" layoutX="168.0" layoutY="18.0" mnemonicParsing="false" text="UPDATE" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
+               <children>
+                  <Label prefHeight="18.0" prefWidth="251.0" text="XP" textAlignment="CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" fx:id="xp" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="330.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3">
+               <children>
+                  <Label fx:id="type" prefHeight="18.0" prefWidth="251.0" text="TYPE" textAlignment="CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4">
+               <children>
+                  <Label fx:id="oc" prefHeight="18.0" prefWidth="251.0" text="OC" textAlignment="CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </GridPane>
+      <AnchorPane fx:id="actionPane" layoutX="507.0" layoutY="496.0" prefHeight="181.0" prefWidth="204.0">
+         <children>
+            <Button fx:id="actionPaneBuy" layoutX="45.0" layoutY="21.0" mnemonicParsing="false" text="BUY" AnchorPane.bottomAnchor="119.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="21.0" />
+            <Button fx:id="actionPaneUse" layoutX="52.0" layoutY="69.0" mnemonicParsing="false" text="USE" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="70.0" />
+            <Button fx:id="actionPaneCancel" layoutX="52.0" layoutY="124.0" mnemonicParsing="false" text="CANCEL" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="120.0" />
+         </children>
+      </AnchorPane>
+      <TilePane fx:id="lot" layoutX="45.0" layoutY="73.0" prefHeight="398.0" prefWidth="782.0" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="73.0">
+         <children>
+            <StackPane prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@tile.png" />
+                     </image></ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="35.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@tileWithRock.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="35.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@plowedTile.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+         </children>
+      </TilePane>
+   </children>
+</AnchorPane>

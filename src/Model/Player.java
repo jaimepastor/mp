@@ -121,11 +121,10 @@ public class Player {
         }
     }
 
-	public void plantSeeds(Tile tile) {
+	public void plantSeeds(Tile tile, String crop) {
 		//connect to controller what to return
-		Crop c = new Crop("Turnip", "xD", 1, 1, 0, 1, 1, 5, 6, 0, 1);
 		//controller should return c?? which represents what crop user chose
-		if (seeds.contains(c) == true)
+		if (seeds.contains(crop) == true)
 			for (int i = 0; i < seeds.size(); i++)
 				if (seeds.get(i).equals(c)) {
 					tile.setHeldCrop(seeds.remove(i));
@@ -143,15 +142,19 @@ public class Player {
 	    switch(toolIndex){
             case 0 : if(tile.getRockStatus() == false)
                         pwede = false;
+                        gameController.displayToolFail("Pickaxe");
                     break;
             case 1 : if(tile.getHeldCrop().getNoOfWaters() >= tile.getHeldCrop().getWaterNeeded())
                         pwede = false;
+                        gameController.displayToolFail("Watering Can");
                     break;
             case 2 : if(tile.getPlowStatus() == true)
                         pwede = false;
+                        gameController.displayToolFail("Plow");
                     break;
             case 3 : if(tile.getHeldCrop().getNoOfFertilizes() >= tile.getHeldCrop().getFertilizerNeeded())
                         pwede = false;
+                        gameController.displayToolFail("Fertilizer");
                     break;
         }
 

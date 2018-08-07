@@ -6,10 +6,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import java.util.Random;
 
@@ -44,11 +45,17 @@ public class GameController {
     @FXML private ImageView apple;
     @FXML private ImageView banana;
     @FXML private ImageView orange;
-    @FXML private Tooltip t;
 
     private Random r = new Random();
     private Player p;
     private String source;
+    private Image unplowedTile = new Image("/View/tile.png");
+    private Image rockTile = new Image("/View/tileWithRock.png");
+    private Image plowedTile = new Image("/View/plowedTile.png");
+    private Image plowedWateredTile = new Image("/View/plowedWateredTile.png");
+    private Image fertilizedPlowedTile = new Image("/View/fertilizedPlowedTile.png");
+    private Image fertilizedPlowedWateredTile = new Image("/View/fertilizedPlowedWateredTile.png");
+
 
     public void initialize(){
         actionPane.setVisible(false);
@@ -257,16 +264,30 @@ public class GameController {
             }
         });
 
-        for(int i = 0; i < 50; i++) {
-            final int x = i;
-            lot.getChildren().get(x).setOnMouseClicked(new EventHandler<MouseEvent>() {
+//        for(int i = 0; i < 50; i++) {
+//            final int x = i;
+            lot.getChildren().get(0).setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    System.out.println("" + x % 10 + "" + x / 10);
-                    System.out.println("" + p.getLot().getTile(x / 10, x % 10));
+                    switch(source){
+                        case "turnip" :
+                        case "carrot" :
+                        case "tomato" :
+                        case "potato" :
+                        case "rose" :
+                        case "tulip" :
+                        case "stargazer" :
+                        case "sunflower" :
+                        case "mango" :
+                        case "apple" :
+                        case "banana" :
+                        case "orange" : p.plantSeeds(p.getLot().getTile(0), source);
+                            break;
+
+                    }
                 }
             });
-        }
+//        }
 
         actionPaneBuy.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -335,8 +356,7 @@ public class GameController {
             @Override
             public void handle(MouseEvent event) {
                 switch(source){
-                    case "turnip" :
-                        break;
+                    case "turnip" : infoStuff.setText("Choose a Tile!");
                 }
             }
         });
@@ -346,7 +366,7 @@ public class GameController {
             public void handle(MouseEvent event) {
                 actionPane.setVisible(false);
                 seedDisplay.setVisible(false);
-                infoStuff.setText("i love hime");
+                infoStuff.setText(lot.getChildren().get(0).toString());
             }
         });
 
@@ -375,11 +395,11 @@ public class GameController {
         type.setText("Type: " + p.getFarmerType());
         oc.setText("OC: " + p.getOC());
         for(int i = 0; i < 50; i++){
-            if(p.getLot().getTile(i / 10, i % 10).getRockStatus()){//ROCKDIMIZER
-                lot.getChildren().get(i).setVisible(false);
+            if(p.getLot().getTile(i).getRockStatus()){
+                ((ImageView)lot.getChildren().get(i)).setImage(rockTile);
             }
         }
-    }
+}
 
     public void displayBuyFail(int kulang){
         infoStuff.setText("Missing " + kulang + " coins!");
@@ -393,7 +413,13 @@ public class GameController {
             extra = " more levels to be eligible for upgrading.";
         infoStuff.setText("You need " + kulang + extra);
     }
+    public void displayToolFail(String tool){
+        infoStuff.setText("Cannot use " + tool + "!");
+    }
+
     public void displayNewInfo(String info){
         infoStuff.setText(info);
     }
+
+
 }
