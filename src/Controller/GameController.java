@@ -340,10 +340,8 @@ public class GameController {
         actionPaneUse.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                switch(source){
-                    case "turnip" : infoStuff.setText("Choose a Tile!");
-                        break;
-                }
+                infoStuff.setText("CHOOSE A TILE!");
+
             }
         });
 
@@ -410,5 +408,7 @@ public class GameController {
         infoStuff.setText("SUCCESS BIIIIIIITCH");
     }
 
-
+    public void displayFail(String seed){
+        infoStuff.setText("You don't have any" + seed + "!!!!!!!!!!!!!!! >:(");
+    }
 }

@@ -143,12 +143,12 @@ public class Player {
 	public void plantSeeds(Tile tile, String crop) {
 		//connect to controller what to return
 		//controller should return c?? which represents what crop user chose
-            for (int i = 0; i < seeds.size(); i++)
-                if (seeds.get(i).getSeedName().equalsIgnoreCase(crop)) {
-                    tile.setHeldCrop(getCrop(name));
-                    gameController.displaySuccess();
-                } else
-                    System.out.println("nani");
+        Crop c = getCrop(crop);
+        if (c != null) {
+            tile.setHeldCrop(getCrop(name));
+            gameController.displaySuccess();
+        } else
+            gameController.displayFail(name);
 		//controller -> seed does not exist booboooo
 	}
 
