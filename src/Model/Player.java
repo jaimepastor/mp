@@ -58,6 +58,7 @@ public class Player {
 		Random r = new Random();
 		//add bonus limits to wn an fn
 		//change in reference to controller
+		/*
 		System.out.println(new Crop("Turnip", "Vegetable", 1, 1, 0, 1, 1, 5, 6, 0, 1).toString());
 		System.out.println(new Crop("Carrot", "Vegetable", 1.5, 1, 0, 1, r.nextInt(2) + 1, 10, 9, 0, 2).toString());
 		System.out.println(new Crop("Tomato", "Vegetable", 2.5, 3, 1, 1, r.nextInt(3) + 1, 20, 15, 0, 3).toString());
@@ -70,7 +71,7 @@ public class Player {
 		System.out.println(new Crop("Apple", "Fruit Tree", 7, 7, 5, 3, r.nextInt(4) + 7, 55, 3.5, 0, 4).toString());
 		System.out.println(new Crop("Banana", "Fruit Tree", 8, 8, 5, 3, r.nextInt(6) + 10, 60, 3.5, 0, 6).toString());
 		System.out.println(new Crop("Orange", "Fruit Tree", 8, 8, 6, 3, r.nextInt(3) + 13, 65, 4.5, 0, 8).toString());
-		//change to display stuff in view instead
+		*///change to display stuff in view instead
 	}
 
 	public void updateLevel() {
@@ -141,8 +142,7 @@ public class Player {
     }
 
 	public void plantSeeds(Tile tile, String crop) {
-		//connect to controller what to return
-		//controller should return c?? which represents what crop user chose
+
         Crop c = getCrop(crop);
         if (c != null) {
             tile.setHeldCrop(getCrop(name));
