@@ -11,9 +11,4 @@ public class Fertilizer extends Tool {
         if(tile.getHeldCrop().getNoOfFertilizes() < tile.getHeldCrop().getFertilizerNeeded())
             tile.getHeldCrop().setNoOfFertilizes(tile.getHeldCrop().getNoOfFertilizes() + 1);
     }
-
-    @Override
-    public void displayInfo() {
-        System.out.println(this.getInformation());
-    }
 }

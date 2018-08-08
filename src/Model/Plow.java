@@ -32,11 +32,4 @@ public class Plow extends Tool
                 //set tile space status to false
         }
     }
-
-
-
-    @Override
-    public void displayInfo() {
-        System.out.println(this.getInformation());
-    }
 }

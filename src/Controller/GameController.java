@@ -16,6 +16,8 @@ import java.util.Random;
 public class GameController {
     @FXML private TilePane lot;
     @FXML private TilePane seedDisplay;
+    @FXML private TilePane plantDisplay;
+    @FXML private TilePane buttonDisplay;
     @FXML private AnchorPane actionPane;
     @FXML private ImageView pickaxe;
     @FXML private ImageView wateringCan;
@@ -31,7 +33,7 @@ public class GameController {
     @FXML private Button actionPaneBuy;
     @FXML private Button actionPaneCancel;
     @FXML private Button actionPaneUse;
-    @FXML private Button update;
+    @FXML private Button upgrade;
     @FXML private ImageView turnip;
     @FXML private ImageView carrot;
     @FXML private ImageView tomato;
@@ -48,6 +50,7 @@ public class GameController {
     private Random r = new Random();
     private Player p;
     private String imgSource;
+    private String actionSource;
     private Image unplowedTile = new Image("/View/tile.png");
     private Image rockTile = new Image("/View/tileWithRock.png");
     private Image plowedTile = new Image("/View/plowedTile.png");
@@ -59,6 +62,7 @@ public class GameController {
     public void initialize(){
         actionPane.setVisible(false);
         seedDisplay.setVisible(false);
+        plantDisplay.setVisible(false);
 
         pickaxe.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -275,14 +279,13 @@ public class GameController {
 
         for(int i = 0; i < 50; i++) {
             final int x = i;
-            lot.getChildren().get(x).setOnMouseClicked(new EventHandler<MouseEvent>() {
+            buttonDisplay.getChildren().get(x).setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
                     infoStuff.setText(p.getLot().getTile(x).toString());
                 }
             });
         }
-        resetTiles();
 
         actionPaneBuy.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -351,11 +354,7 @@ public class GameController {
             public void handle(MouseEvent event) {
                 infoStuff.setText("CHOOSE A TILE!");
                 actionPane.setVisible(false);
-                switch(imgSource){
-                    case "turnip" :
-                        actionMode(imgSource);
-                        break;
-                }
+//                use();
             }
         });
 
@@ -367,7 +366,7 @@ public class GameController {
             }
         });
 
-        update.setOnAction(new EventHandler<ActionEvent>() {
+        upgrade.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 p.updateFarmerType();
@@ -381,7 +380,7 @@ public class GameController {
         type.setText("Type: " + p.getFarmerType());
         oc.setText("OC: " + p.getOC());
         if(p.getLevel() >= p.getTypes()[p.getCurType() + 1].getLevelReq()){
-            update.setVisible(true);
+            upgrade.setVisible(true);
         }
     }
     public void setModel(Player p) {
@@ -398,10 +397,6 @@ public class GameController {
         }
 }
 
-    public void displayBuyFail(int kulang){
-        infoStuff.setText("Missing " + kulang + " coins!");
-    }
-
     public void displayLevelFail(int kulang){
         String extra;
         if(kulang == 1)
@@ -410,8 +405,8 @@ public class GameController {
             extra = " more levels to be eligible for upgrading.";
         infoStuff.setText("You need " + kulang + extra);
     }
-    public void displayToolFail(String tool){
-        infoStuff.setText("Cannot use " + tool + "!");
+    public void displayFail(String text){
+        infoStuff.setText(text);
     }
 
     public void displayInfo(String info){
@@ -420,10 +415,6 @@ public class GameController {
 
     public void displaySuccess(){
         infoStuff.setText("SUCCESS BIIIIIIITCH");
-    }
-
-    public void displayFail(String seed){
-        infoStuff.setText("You don't have any" + seed + "!!!!!!!!!!!!!!! >:(");
     }
 
     public void actionMode(String thing){
@@ -437,6 +428,7 @@ public class GameController {
             });
         }
     }
+
     public void resetTiles(){
         for(int i = 0; i < 50; i++) {
             final int x = i;
@@ -444,6 +436,19 @@ public class GameController {
                 @Override
                 public void handle(MouseEvent event) {
                     infoStuff.setText(p.getLot().getTile(x).toString());
+                }
+            });
+        }
+    }
+
+    public void use(String tool){
+        for(int i = 0; i < 50; i++){
+            buttonDisplay.getChildren().get(i).setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    switch(tool){
+                        case "" :
+                    }
                 }
             });
         }

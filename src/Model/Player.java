@@ -92,7 +92,7 @@ public class Player {
 					OC = OC - types[curType].getRegFee();
 					gameController.update();
 				} else {
-                    gameController.displayBuyFail(types[curType + 1].getRegFee() - OC);
+                    gameController.displayFail("You are missing " + (types[curType + 1].getRegFee() - OC) + " OC!");
                 }
             else
                 gameController.displayLevelFail(types[curType + 1].getLevelReq() - level);
@@ -122,7 +122,7 @@ public class Player {
 
 	public void buySeeds(Crop crop) {
 		if(crop.getSeedCost() > OC)
-			gameController.displayBuyFail(crop.getSeedCost() - OC);
+			gameController.displayFail("You are missing " + (crop.getSeedCost() - OC) + " OC!");
 		else{
 			seeds.add(crop);
 			OC = OC - crop.getSeedCost();
@@ -133,7 +133,7 @@ public class Player {
 
 	public void buyFertilizer(){
 		if(10 > OC)
-		    gameController.displayBuyFail(10 - OC);
+		    gameController.displayFail("You are missing " + (10 - OC) + " OC!");
 		else{
             noOfFertilizers++;
             OC -= 10;
@@ -145,10 +145,18 @@ public class Player {
 
         Crop c = getCrop(crop);
         if (c != null) {
-            tile.setHeldCrop(getCrop(name));
-            gameController.displaySuccess();
+            if(tile.getSpaceStatus() == true)
+                if(tile.getPlowStatus() == true){
+                    tile.setHeldCrop(getCrop(name));
+                    xp++;
+                    gameController.displaySuccess();
+                }
+                else
+                    gameController.displayFail(("Tile needs to be first!"));
+            else
+                gameController.displayFail("Tile has something inside it!");
         } else
-            gameController.displayFail(name);
+            gameController.displayFail("You don't have any " + name + "seeds.");
 		//controller -> seed does not exist booboooo
 	}
 
@@ -156,29 +164,27 @@ public class Player {
 
 	}
 
-	public void useTool(int toolIndex, Tile tile){
+	public void useTool(String tool, Tile tile){
 	    boolean pwede = true;
-	    switch(toolIndex){
-            case 0 : if(tile.getRockStatus() == false)
-                        pwede = false;
-                        gameController.displayToolFail("Pickaxe");
+	    switch(tool){
+            case "pickaxe" : if(tile.getRockStatus() == false){
+                gameController.displayFail("Cannot use Pickaxe");
+                }
                     break;
-            case 1 : if(tile.getHeldCrop().getNoOfWaters() >= tile.getHeldCrop().getWaterNeeded())
-                        pwede = false;
-                        gameController.displayToolFail("Watering Can");
+            case "wateringCan" : if(tile.getHeldCrop().getNoOfWaters() >= tile.getHeldCrop().getWaterNeeded()){
+                gameController.displayFail("Cannot use Watering Can");
+                }
                     break;
-            case 2 : if(tile.getPlowStatus() == true)
-                        pwede = false;
-                        gameController.displayToolFail("Plow");
+            case "plow" : if(tile.getPlowStatus() == true){
+                gameController.displayFail("Cannot use Plow");
+                }
                     break;
-            case 3 : if(tile.getHeldCrop().getNoOfFertilizes() >= tile.getHeldCrop().getFertilizerNeeded())
-                        pwede = false;
-                        gameController.displayToolFail("Fertilizer");
+            case "fertilizer" : if(tile.getHeldCrop().getNoOfFertilizes() >= tile.getHeldCrop().getFertilizerNeeded()){
+                gameController.displayFail("Cannot use Fertilizer");
+                }
                     break;
         }
 
-	    if (pwede == true)
-		    tools.get(toolIndex).useTool(tile);
 	}
 	public void setLevel(int level){
 	    this.level = level;

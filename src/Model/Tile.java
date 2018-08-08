@@ -7,11 +7,11 @@ public class Tile
     //private int xCoord;
     //private int yCoord;
     private int coordinate;
-    private boolean plowStatus;
-    private boolean waterStatus;
-    private boolean spaceStatus;
-    private boolean rockStatus;
-    private boolean witherStatus;
+    private boolean plowStatus;//true means its plowed
+    private boolean waterStatus;//true means its watered as required
+    private boolean spaceStatus;//true means there is space
+    private boolean rockStatus;//true means there is a rock
+    private boolean witherStatus;//plant is withered??
     private Crop heldCrop;
 
     public Tile(int coordinate, boolean rock){

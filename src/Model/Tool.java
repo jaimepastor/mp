@@ -19,6 +19,4 @@ public abstract class Tool
     }
 
     public abstract void useTool(Tile tile);
-
-    public abstract void displayInfo();
 }

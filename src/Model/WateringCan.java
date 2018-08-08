@@ -11,9 +11,4 @@ public class WateringCan extends Tool
         tile.setWaterStatus(true);
         tile.getHeldCrop().setNoOfWaters(tile.getHeldCrop().getNoOfWaters() + 1);
     }
-
-    @Override
-    public void displayInfo(){
-        System.out.println(this.getInformation());
-    }
 }
