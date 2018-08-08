@@ -20,10 +20,49 @@ public class Tile
         this.coordinate = coordinate;
         this.plowStatus = false;
         this.waterStatus = false;
-        this.spaceStatus = true;
         this.rockStatus = rock;
+        this.spaceStatus = !rock;
         this.witherStatus = false;
         this.heldCrop = null;
+    }
+
+    public boolean treeValid(Tile up, Tile right, Tile down, Tile left, Tile current){
+        switch(current.getCoordinate()){
+            case 0 : if (down.getSpaceStatus() == true && right.getSpaceStatus() == true)
+                    return true;
+                break;
+            case 9 :  if(down.getSpaceStatus() == true && left.getSpaceStatus() == true)
+                    return true;
+                break;
+            case 40 : if(up.getSpaceStatus() == true && right.getSpaceStatus() == true)
+                    return true;
+                break;
+            case 49 : if(up.getSpaceStatus() == true && left.getSpaceStatus() == true)
+                    return true;
+                break;
+            case 10 : case 20 : case 30 :
+                if(up.getSpaceStatus() == true && down.getSpaceStatus() == true && right.getSpaceStatus() == true)
+                    return true;
+                break;
+            case 19 : case 29 : case 39 :
+                if(up.getSpaceStatus() == true && down.getSpaceStatus() == true && left.getSpaceStatus() == true)
+                    return true;
+                break;
+            case 1 : case 2 : case 3 : case 4 : case 5 : case 6 : case 7 : case 8 :
+                if(down.getSpaceStatus() == true && left.getSpaceStatus() == true && right.getSpaceStatus() == true)
+                    return true;
+                break;
+            case 41 : case 42 : case 43 : case 44 : case 45 : case 46 : case 47 : case 48 :
+                if(up.getSpaceStatus() == true && left.getSpaceStatus() == true && right.getSpaceStatus() == true)
+                    return true;
+                break;
+            default :
+                if(up.getSpaceStatus() == true && down.getSpaceStatus() == true && right.getSpaceStatus() == true && left.getSpaceStatus() == true)
+                    return true;
+                break;
+        }
+
+        return false;
     }
 
     public void setPlowStatus(boolean plowStatus) {

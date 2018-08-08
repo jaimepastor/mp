@@ -20,7 +20,7 @@ public class Crop
     private int prdctStayTime;
     private int xpResult;
 
-    public Crop(String sn, String type, double ht, int wn, int fn, int hc, int npp, int sc, double bp, int cb, int xp){
+    public Crop(String sn, String type, double ht, int wn, int hwn, int fn, int hfn, int hc, int npp, int sc, double bp, int cb, int xp){
         this.seedName = sn;
         this.type = type;
         this.harvestTime = ht * 60;//converts harvest time to seconds
