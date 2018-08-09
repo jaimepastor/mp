@@ -9,6 +9,7 @@ public class Tile
     private int coordinate;
     private boolean plowStatus;//true means its plowed
     private boolean waterStatus;//true means its watered as required
+    private boolean fertilizeStatus;// true means its fertilized as required
     private boolean spaceStatus;//true means there is space
     private boolean rockStatus;//true means there is a rock
     private boolean witherStatus;//plant is withered??
@@ -20,6 +21,7 @@ public class Tile
         this.coordinate = coordinate;
         this.plowStatus = false;
         this.waterStatus = false;
+        this.fertilizeStatus = false;
         this.rockStatus = rock;
         this.spaceStatus = !rock;
         this.witherStatus = false;
@@ -28,35 +30,35 @@ public class Tile
 
     public boolean treeValid(Tile up, Tile right, Tile down, Tile left, Tile current){
         switch(current.getCoordinate()){
-            case 0 : if (down.getSpaceStatus() == true && right.getSpaceStatus() == true)
+            case 0 : if (down.getSpaceStatus() == true && right.getSpaceStatus() == true)//upper left corner
                     return true;
                 break;
-            case 9 :  if(down.getSpaceStatus() == true && left.getSpaceStatus() == true)
+            case 9 :  if(down.getSpaceStatus() == true && left.getSpaceStatus() == true)//upper right corner
                     return true;
                 break;
-            case 40 : if(up.getSpaceStatus() == true && right.getSpaceStatus() == true)
+            case 40 : if(up.getSpaceStatus() == true && right.getSpaceStatus() == true)//lower left corner
                     return true;
                 break;
-            case 49 : if(up.getSpaceStatus() == true && left.getSpaceStatus() == true)
+            case 49 : if(up.getSpaceStatus() == true && left.getSpaceStatus() == true)//lower right corner
                     return true;
                 break;
-            case 10 : case 20 : case 30 :
+            case 10 : case 20 : case 30 : //left side
                 if(up.getSpaceStatus() == true && down.getSpaceStatus() == true && right.getSpaceStatus() == true)
                     return true;
                 break;
-            case 19 : case 29 : case 39 :
+            case 19 : case 29 : case 39 : //right side
                 if(up.getSpaceStatus() == true && down.getSpaceStatus() == true && left.getSpaceStatus() == true)
                     return true;
                 break;
-            case 1 : case 2 : case 3 : case 4 : case 5 : case 6 : case 7 : case 8 :
+            case 1 : case 2 : case 3 : case 4 : case 5 : case 6 : case 7 : case 8 : //top side
                 if(down.getSpaceStatus() == true && left.getSpaceStatus() == true && right.getSpaceStatus() == true)
                     return true;
                 break;
-            case 41 : case 42 : case 43 : case 44 : case 45 : case 46 : case 47 : case 48 :
+            case 41 : case 42 : case 43 : case 44 : case 45 : case 46 : case 47 : case 48 : //bottom side
                 if(up.getSpaceStatus() == true && left.getSpaceStatus() == true && right.getSpaceStatus() == true)
                     return true;
                 break;
-            default :
+            default : //everything inside
                 if(up.getSpaceStatus() == true && down.getSpaceStatus() == true && right.getSpaceStatus() == true && left.getSpaceStatus() == true)
                     return true;
                 break;
@@ -83,6 +85,10 @@ public class Tile
 
     public void setWitherStatus(boolean witherStatus) {
         this.witherStatus = witherStatus;
+    }
+
+    public void setFertilizeStatus(boolean fertilizeStatus) {
+        this.fertilizeStatus = fertilizeStatus;
     }
 
     public void setHeldCrop(Crop heldCrop) {
@@ -121,12 +127,22 @@ public class Tile
         return this.witherStatus;
     }
 
+    public boolean getFertilizeStatus() {
+        return fertilizeStatus;
+    }
+
     public Crop getHeldCrop() {
         return heldCrop;
     }
 
     public String toString(){
-        return "Coordinate: " + coordinate + "\nIs Plowed: " + Boolean.toString(plowStatus) + "\nIs Watered: " + Boolean.toString(waterStatus)
-                + "\nHas Rock: " + Boolean.toString(rockStatus) + "\nHas Space: " + Boolean.toString(spaceStatus) + "\nIs Crop Withered: " + Boolean.toString(witherStatus) + "\nCurrent Crop: "/* + heldCrop.getSeedName()*/;
+        String information = "Coordinate: " + coordinate + "\nIs Plowed: " + Boolean.toString(plowStatus) + "\nIs Watered: " + Boolean.toString(waterStatus)
+                + "\nHas Rock: " + Boolean.toString(rockStatus) + "\nHas Space: " + Boolean.toString(spaceStatus) + "\nIs Crop Withered: " + Boolean.toString(witherStatus) + "\nCurrent Crop: ";
+        if(heldCrop == null)
+            information.concat("null");
+        else
+            information.concat(heldCrop.getSeedName());
+
+        return information;
     }
 }

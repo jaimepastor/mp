@@ -1,5 +1,7 @@
 package Model;
 
+import Controller.GameController;
+
 public class Fertilizer extends Tool {
 
     public Fertilizer(String name, String information){
@@ -7,8 +9,12 @@ public class Fertilizer extends Tool {
     }
 
     @Override
-    public void useTool(Tile tile) {
-        if(tile.getHeldCrop().getNoOfFertilizes() < tile.getHeldCrop().getFertilizerNeeded())
-            tile.getHeldCrop().setNoOfFertilizes(tile.getHeldCrop().getNoOfFertilizes() + 1);
+    public void useTool(Tile tile, GameController gc) {
+        if(tile.getHeldCrop().getNoOfFertilizes() >= tile.getHeldCrop().getFertilizerNeeded()){
+            tile.setFertilizeStatus(true);
+            gc.changeTile(tile.getCoordinate(), "fertilizer");
+        }
+
+        tile.getHeldCrop().setNoOfFertilizes(tile.getHeldCrop().getNoOfFertilizes() + 1);
     }
 }

@@ -6,7 +6,9 @@ public class Crop
     private String type;
     private double harvestTime;
     private int waterNeeded;
+    private int highWaterNeeded;
     private int fertilizerNeeded;
+    private int highFertilizerNeeded;
     private int harvestCost;
     private int noPrdctsPrdced;
     private int seedCost;
@@ -25,7 +27,9 @@ public class Crop
         this.type = type;
         this.harvestTime = ht * 60;//converts harvest time to seconds
         this.waterNeeded = wn;
+        this.highWaterNeeded = hwn;
         this.fertilizerNeeded = fn;
+        this.highFertilizerNeeded = hfn;
         this.harvestCost = hc;
         this.noPrdctsPrdced = npp;
         this.seedCost = sc;
@@ -65,8 +69,16 @@ public class Crop
         return waterNeeded;
     }
 
+    public int getHighWaterNeeded() {
+        return highWaterNeeded;
+    }
+
     public int getFertilizerNeeded() {
         return fertilizerNeeded;
+    }
+
+    public int getHighFertilizerNeeded() {
+        return highFertilizerNeeded;
     }
 
     public int getHarvestCost() {

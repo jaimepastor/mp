@@ -141,23 +141,40 @@ public class Player {
         }
     }
 
-	public void plantSeeds(Tile tile, String crop) {
+	public void plantSeeds(Tile tile, String crop, String type) {
 
-        Crop c = getCrop(crop);
-        if (c != null) {
+        int i = tile.getCoordinate();
+        if (tile.getPlowStatus() == true) {
             if(tile.getSpaceStatus() == true)
-                if(tile.getPlowStatus() == true){
-                    tile.setHeldCrop(getCrop(name));
-                    xp++;
-                    gameController.displaySuccess();
-                }
+            	if (computeNoOfSeedType(crop) > 0)
+            		if(type == "Fruit Tree")
+						if(tile.treeValid(lot.getTile(i - 10), lot.getTile(i + 1), lot.getTile(i + 10), lot.getTile(i - 1), tile) == true) {
+							tile.setHeldCrop(getCrop(crop));
+							lot.getTile(i - 10).setSpaceStatus(false);
+							lot.getTile(i + 1).setSpaceStatus(false);
+							lot.getTile(i + 10).setSpaceStatus(false);
+							lot.getTile(i - 1).setSpaceStatus(false);
+							tile.setSpaceStatus(false);
+							xp++;
+							gameController.displaySuccess();
+                            gameController.activateCrop(i);
+                            gameController.resetTiles();
+                        }
+						else gameController.displayFail("There is a filled tile!. check the tiles above, below, and beside");
+					else {
+							tile.setHeldCrop(getCrop(crop));
+							tile.setSpaceStatus(false);
+							xp++;
+							gameController.displaySuccess();
+							gameController.resetTiles();
+							gameController.activateCrop(i);
+            		}
                 else
-                    gameController.displayFail(("Tile needs to be first!"));
+                    gameController.displayFail("You don't have any " + crop + " seeds." + computeNoOfSeedType(crop));
             else
                 gameController.displayFail("Tile has something inside it!");
         } else
-            gameController.displayFail("You don't have any " + name + "seeds.");
-		//controller -> seed does not exist booboooo
+			gameController.displayFail("Tile needs to plowed be first!");
 	}
 
 	public void harvestCrop(Tile tile) {
@@ -165,22 +182,38 @@ public class Player {
 	}
 
 	public void useTool(String tool, Tile tile){
-	    boolean pwede = true;
 	    switch(tool){
             case "pickaxe" : if(tile.getRockStatus() == false){
-                gameController.displayFail("Cannot use Pickaxe");
-                }
+                    gameController.displayFail("Cannot use Pickaxe");
+                } else {
+            		tools.get(0).useTool(tile, gameController);
+            		gameController.resetTiles();
+				}
                     break;
-            case "wateringCan" : if(tile.getHeldCrop().getNoOfWaters() >= tile.getHeldCrop().getWaterNeeded()){
-                gameController.displayFail("Cannot use Watering Can");
+            case "wateringCan" :
+                if(tile.getHeldCrop() == null){
+                    gameController.displayFail("Cannot use Watering Can!\nPlant a crop first before watering.");
+                }
+                else{
+                    tools.get(1).useTool(tile, gameController);
+                    gameController.resetTiles();
                 }
                     break;
             case "plow" : if(tile.getPlowStatus() == true){
-                gameController.displayFail("Cannot use Plow");
+                    gameController.displayFail("Cannot use Plow");
+                } else {
+                System.out.println(Boolean.toString(tile.getWitherStatus()));
+                    tools.get(2).useTool(tile, gameController);
+                    gameController.resetTiles();
                 }
                     break;
-            case "fertilizer" : if(tile.getHeldCrop().getNoOfFertilizes() >= tile.getHeldCrop().getFertilizerNeeded()){
-                gameController.displayFail("Cannot use Fertilizer");
+            case "fertilizer" :
+                if(tile.getHeldCrop() == null){
+                    gameController.displayFail("Cannot use Fertilizer!\nPlant a crop first before fertilizing.");
+                }
+                else {
+                    tools.get(3).useTool(tile, gameController);
+                    gameController.resetTiles();
                 }
                     break;
         }

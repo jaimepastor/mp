@@ -1,5 +1,7 @@
 package Model;
 
+import Controller.GameController;
+
 public abstract class Tool
 {
     private String information;
@@ -18,5 +20,5 @@ public abstract class Tool
         return name;
     }
 
-    public abstract void useTool(Tile tile);
+    public abstract void useTool(Tile tile, GameController gc);
 }

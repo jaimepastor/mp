@@ -1,5 +1,7 @@
 package Model;
 
+import Controller.GameController;
+
 public class Pickaxe extends Tool
 {
     public Pickaxe(String name, String information){
@@ -7,8 +9,9 @@ public class Pickaxe extends Tool
     }
 
     @Override
-    public void useTool(Tile tile){
+    public void useTool(Tile tile, GameController gc){
         tile.setRockStatus(false);
-        tile.setSpaceStatus(false);
+        tile.setSpaceStatus(true);
+        gc.changeTile(tile.getCoordinate(), "pickaxe");
     }
 }

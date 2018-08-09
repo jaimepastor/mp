@@ -49,20 +49,21 @@ public class GameController {
 
     private Random r = new Random();
     private Player p;
-    private String imgSource;
+    private String imgSource;//keeps the source of click action
     private String actionSource;
+
     private Image unplowedTile = new Image("/View/tile.png");
     private Image rockTile = new Image("/View/tileWithRock.png");
     private Image plowedTile = new Image("/View/plowedTile.png");
     private Image plowedWateredTile = new Image("/View/plowedWateredTile.png");
     private Image fertilizedPlowedTile = new Image("/View/fertilizedPlowedTile.png");
     private Image fertilizedPlowedWateredTile = new Image("/View/fertilizedPlowedWateredTile.png");
+    private Image plant1 = new Image("/View/plantStage1.png");
 
 
     public void initialize(){
         actionPane.setVisible(false);
         seedDisplay.setVisible(false);
-        plantDisplay.setVisible(false);
 
         pickaxe.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -354,7 +355,7 @@ public class GameController {
             public void handle(MouseEvent event) {
                 infoStuff.setText("CHOOSE A TILE!");
                 actionPane.setVisible(false);
-//                use();
+                actionMode(imgSource);
             }
         });
 
@@ -363,6 +364,7 @@ public class GameController {
             public void handle(MouseEvent event) {
                 actionPane.setVisible(false);
                 seedDisplay.setVisible(false);
+                resetTiles();
             }
         });
 
@@ -374,7 +376,7 @@ public class GameController {
         });
     }
 
-    public void update(){
+    public void update(){//called on every change of xp and OC change
         level.setText("" + p.getLevel());
         xp.setText("XP : " + p.getXp() + " / " + (5 * (p.getLevel() + 1)));
         type.setText("Type: " + p.getFarmerType());
@@ -383,7 +385,7 @@ public class GameController {
             upgrade.setVisible(true);
         }
     }
-    public void setModel(Player p) {
+    public void setModel(Player p) {//initializes field with player information
         this.p = p;
         name.setText(p.getName());
         level.setText("" + p.getLevel());
@@ -397,7 +399,7 @@ public class GameController {
         }
 }
 
-    public void displayLevelFail(int kulang){
+    public void displayLevelFail(int kulang){//displays amount of missing level
         String extra;
         if(kulang == 1)
             extra = " more level to to be eligible for upgrading.";
@@ -407,50 +409,92 @@ public class GameController {
     }
     public void displayFail(String text){
         infoStuff.setText(text);
-    }
+    }//displays error text, probably should be in another label
 
     public void displayInfo(String info){
         infoStuff.setText(info);
-    }
+    }//displays information for label, can be for seed and tool
 
     public void displaySuccess(){
-        infoStuff.setText("SUCCESS BIIIIIIITCH");
+        infoStuff.setText("SUCCESS B");
     }
 
-    public void actionMode(String thing){
+    public void resetTiles(){//changes tiles back to show information only
         for(int i = 0; i < 50; i++) {
             final int x = i;
-            lot.getChildren().get(x).setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println(thing);
-                }
-            });
-        }
-    }
-
-    public void resetTiles(){
-        for(int i = 0; i < 50; i++) {
-            final int x = i;
-            lot.getChildren().get(x).setOnMouseClicked(new EventHandler<MouseEvent>() {
+            buttonDisplay.getChildren().get(x).setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
                     infoStuff.setText(p.getLot().getTile(x).toString());
                 }
             });
         }
+        infoStuff.setText("i love hime");
     }
 
-    public void use(String tool){
+    public void actionMode(String tool){//changes behavior of each button tile
+        actionPane.setVisible(true);
+        actionPaneBuy.setVisible(false);
+        actionPaneUse.setVisible(false);
+        actionPaneCancel.setVisible(true);
         for(int i = 0; i < 50; i++){
+            final int x = i;
             buttonDisplay.getChildren().get(i).setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
                     switch(tool){
-                        case "" :
+                        case "turnip" :
+                        case "carrot" :
+                        case "tomato" :
+                        case "potato" : p.plantSeeds(p.getLot().getTile(x), tool, "Vegetable");
+                            break;
+                        case "rose" :
+                        case "tulip" :
+                        case "stargazer" :
+                        case "sunflower" : p.plantSeeds(p.getLot().getTile(x), tool, "Flower");
+                            break;
+                        case "mango" :
+                        case "apple" :
+                        case "banana" :
+                        case "orange" : p.plantSeeds(p.getLot().getTile(x), tool, "Fruit Tree");
+                            break;
+                        case "pickaxe" : p.useTool(tool, p.getLot().getTile(x));
+                            break;
+                        case "wateringCan" : p.useTool(tool, p.getLot().getTile(x));
+                            System.out.println(tool);
+                            break;
+                        case "plow" : p.useTool(tool, p.getLot().getTile(x));
+                            break;
+                        case "fertilizer" : p.useTool(tool, p.getLot().getTile(x));
+                            break;
                     }
+                    actionPane.setVisible(false);
                 }
             });
+        }
+    }
+
+    public void activateCrop(int coord){//set visibility of specified crop to true
+        ((ImageView)plantDisplay.getChildren().get(coord)).setImage(plant1);
+    }
+
+    public void changeTile(int coord, String source){//change lot tile image
+        switch(source){
+            case "pickaxe" :((ImageView)lot.getChildren().get(coord)).setImage(unplowedTile);
+                break;
+            case "wateringCan" :
+                if(p.getLot().getTile(coord).getHeldCrop().getNoOfFertilizes() >= p.getLot().getTile(coord).getHeldCrop().getFertilizerNeeded())
+                ((ImageView)lot.getChildren().get(coord)).setImage(fertilizedPlowedWateredTile);
+                else
+                ((ImageView)lot.getChildren().get(coord)).setImage(plowedWateredTile);
+                break;
+            case "plow" : ((ImageView)lot.getChildren().get(coord)).setImage(plowedTile);
+                break;
+            case "fertilizer" : if(p.getLot().getTile(coord).getHeldCrop().getNoOfWaters() >= p.getLot().getTile(coord).getHeldCrop().getWaterNeeded())
+                ((ImageView)lot.getChildren().get(coord)).setImage(fertilizedPlowedWateredTile);
+                else
+                ((ImageView)lot.getChildren().get(coord)).setImage(fertilizedPlowedTile);
+                break;
         }
     }
 }
