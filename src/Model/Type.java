@@ -8,8 +8,9 @@ public class Type
     private int wtrFrtBonus;
     private int hrvstTimeBonus;
     private int regFee;
+    private boolean isRegistered;
 
-    public Type(String type, int req, int EBB, int WFB, int HTB, int regFee)
+    public Type(String type, int req, int EBB, int WFB, int HTB, int regFee, boolean reg)
     {
         this.type = type;
         this.levelReq = req;
@@ -17,6 +18,7 @@ public class Type
         this.wtrFrtBonus = WFB;
         this.hrvstTimeBonus = HTB;
         this.regFee = regFee;
+        this.isRegistered = reg;
     }
 
     public void displayInfo() {

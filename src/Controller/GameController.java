@@ -468,7 +468,6 @@ public class GameController {
                         case "fertilizer" : p.useTool(tool, p.getLot().getTile(x));
                             break;
                     }
-                    actionPane.setVisible(false);
                 }
             });
         }
@@ -484,7 +483,7 @@ public class GameController {
                 break;
             case "wateringCan" :
                 if(p.getLot().getTile(coord).getHeldCrop().getNoOfFertilizes() >= p.getLot().getTile(coord).getHeldCrop().getFertilizerNeeded())
-                ((ImageView)lot.getChildren().get(coord)).setImage(fertilizedPlowedWateredTile);
+                ((ImageView)lot.getChildren().get(coord)).setImage(fertilizedPlowedWateredTile);//FIX GET NO OF FERTILIZERS
                 else
                 ((ImageView)lot.getChildren().get(coord)).setImage(plowedWateredTile);
                 break;

@@ -10,7 +10,7 @@ public class WateringCan extends Tool
 
     @Override
     public void useTool(Tile tile, GameController gc){
-        if(tile.getHeldCrop().getNoOfWaters() >= tile.getHeldCrop().getWaterNeeded()){
+        if(tile.getHeldCrop().getNoOfWaters() >= tile.getHeldCrop().getWaterNeeded()){//ITS IN TILE
             tile.setWaterStatus(true);
             gc.changeTile(tile.getCoordinate(), "wateringCan");
         }

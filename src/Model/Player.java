@@ -11,7 +11,6 @@ public class Player {
 	private int OC;
 	private int xp;
 	private int level;
-	private boolean isRegistered;
 	private Type[] types;
 	private int curType;
 	private ArrayList<Tool> tools;
@@ -26,7 +25,6 @@ public class Player {
 		this.OC = 10000;
 		this.xp = 0;
 		this.level = 15 ;
-		this.isRegistered = false;
 		this.curType = 1;
 		this.tools = new ArrayList<>();
 		this.seeds = new ArrayList<>();
@@ -40,10 +38,10 @@ public class Player {
 
 	private void initializeFarmerTypes() {
 		this.types = new Type[4];
-		this.types[0] = new Type("Farmer", 0, 0, 0, 0, 0);
-		this.types[1] = new Type("Registered Farmer", 10, 2, 0, 5, 200);
-		this.types[2] = new Type("Distinguished Farmer", 15, 3, 1, 10, 250);
-		this.types[3] = new Type("Honorable Farmer", 20, 5, 2, 15, 350);
+		this.types[0] = new Type("Farmer", 0, 0, 0, 0, 0, false);
+		this.types[1] = new Type("Registered Farmer", 10, 2, 0, 5, 200, true);
+		this.types[2] = new Type("Distinguished Farmer", 15, 3, 1, 10, 250, true);
+		this.types[3] = new Type("Honorable Farmer", 20, 5, 2, 15, 350, true);
 	}
 
 	private void initializeTools() {
@@ -51,27 +49,6 @@ public class Player {
 		this.tools.add(new WateringCan("Watering Can", "Waters cans"));
 		this.tools.add(new Plow("Plow", "P's lows"));
 		this.tools.add(new Fertilizer("Fertilizer", "Fertis lizers"));
-	}
-
-	private void displaySeeds() {
-		//display each crop
-		Random r = new Random();
-		//add bonus limits to wn an fn
-		//change in reference to controller
-		/*
-		System.out.println(new Crop("Turnip", "Vegetable", 1, 1, 0, 1, 1, 5, 6, 0, 1).toString());
-		System.out.println(new Crop("Carrot", "Vegetable", 1.5, 1, 0, 1, r.nextInt(2) + 1, 10, 9, 0, 2).toString());
-		System.out.println(new Crop("Tomato", "Vegetable", 2.5, 3, 1, 1, r.nextInt(3) + 1, 20, 15, 0, 3).toString());
-		System.out.println(new Crop("Potato", "Vegetable", 5, 4, 2, 1, r.nextInt(6) + 1, 25, 13, 0, 4).toString());
-		System.out.println(new Crop("Rose", "Flower", 1, 1, 0, 2, 1, 5, 5, 2, 1).toString());
-		System.out.println(new Crop("Tulip", "Flower", 1.5, 2, 0, 2, 1, 7, 7, 2, 3).toString());
-		System.out.println(new Crop("Stargazer", "Flower", 2.5, 2, 0, 2, 1, 10, 9, 2, 5).toString());
-		System.out.println(new Crop("Sunflower", "Flower", 3.5, 2, 1, 2, 1, 20, 19, 2, 7).toString());
-		System.out.println(new Crop("Mango", "Fruit Tree", 7, 7, 4, 3, r.nextInt(6) + 5, 50, 4, 0, 2).toString());
-		System.out.println(new Crop("Apple", "Fruit Tree", 7, 7, 5, 3, r.nextInt(4) + 7, 55, 3.5, 0, 4).toString());
-		System.out.println(new Crop("Banana", "Fruit Tree", 8, 8, 5, 3, r.nextInt(6) + 10, 60, 3.5, 0, 6).toString());
-		System.out.println(new Crop("Orange", "Fruit Tree", 8, 8, 6, 3, r.nextInt(3) + 13, 65, 4.5, 0, 8).toString());
-		*///change to display stuff in view instead
 	}
 
 	public void updateLevel() {
@@ -104,7 +81,7 @@ public class Player {
     public int computeNoOfSeedType(String seedName){
         int x = 0;//no of found seeds
         for(int i = 0; i < seeds.size(); i++)
-            if(seeds.get(i).getSeedName().equalsIgnoreCase(seedName) == true)
+            if(seeds.get(i).getCropName().equalsIgnoreCase(seedName) == true)
                 x++;
 
         return x;
@@ -112,7 +89,7 @@ public class Player {
 
     public Crop getCrop(String name){
         for(int i = 0; i < seeds.size(); i++){
-            if(seeds.get(i).getSeedName().equalsIgnoreCase(name)){
+            if(seeds.get(i).getCropName().equalsIgnoreCase(name)){
                 return seeds.remove(i);
             }
         }
@@ -148,17 +125,20 @@ public class Player {
             if(tile.getSpaceStatus() == true)
             	if (computeNoOfSeedType(crop) > 0)
             		if(type == "Fruit Tree")
-						if(tile.treeValid(lot.getTile(i - 10), lot.getTile(i + 1), lot.getTile(i + 10), lot.getTile(i - 1), tile) == true) {
+						if(tile.treeValid(lot.getTile(i - 10), lot.getTile(i - 9), lot.getTile(i + 1), lot.getTile(i + 11), lot.getTile(i + 10), lot.getTile(i + 9), lot.getTile(i - 1), lot.getTile(i - 11), tile) == true) {
 							tile.setHeldCrop(getCrop(crop));
 							lot.getTile(i - 10).setSpaceStatus(false);
+							lot.getTile(i - 9).setSpaceStatus(false);
 							lot.getTile(i + 1).setSpaceStatus(false);
+							lot.getTile(i + 11).setSpaceStatus(false);
 							lot.getTile(i + 10).setSpaceStatus(false);
+							lot.getTile(i + 9).setSpaceStatus(false);
 							lot.getTile(i - 1).setSpaceStatus(false);
+							lot.getTile(i - 11).setSpaceStatus(false);
 							tile.setSpaceStatus(false);
 							xp++;
 							gameController.displaySuccess();
                             gameController.activateCrop(i);
-                            gameController.resetTiles();
                         }
 						else gameController.displayFail("There is a filled tile!. check the tiles above, below, and beside");
 					else {
@@ -166,7 +146,6 @@ public class Player {
 							tile.setSpaceStatus(false);
 							xp++;
 							gameController.displaySuccess();
-							gameController.resetTiles();
 							gameController.activateCrop(i);
             		}
                 else
@@ -187,7 +166,6 @@ public class Player {
                     gameController.displayFail("Cannot use Pickaxe");
                 } else {
             		tools.get(0).useTool(tile, gameController);
-            		gameController.resetTiles();
 				}
                     break;
             case "wateringCan" :
@@ -196,7 +174,6 @@ public class Player {
                 }
                 else{
                     tools.get(1).useTool(tile, gameController);
-                    gameController.resetTiles();
                 }
                     break;
             case "plow" : if(tile.getPlowStatus() == true){
@@ -204,7 +181,6 @@ public class Player {
                 } else {
                 System.out.println(Boolean.toString(tile.getWitherStatus()));
                     tools.get(2).useTool(tile, gameController);
-                    gameController.resetTiles();
                 }
                     break;
             case "fertilizer" :
@@ -213,7 +189,6 @@ public class Player {
                 }
                 else {
                     tools.get(3).useTool(tile, gameController);
-                    gameController.resetTiles();
                 }
                     break;
         }

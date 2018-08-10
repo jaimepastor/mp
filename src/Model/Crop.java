@@ -2,7 +2,7 @@ package Model;
 
 public class Crop
 {
-    private String seedName;
+    private String cropName;
     private String type;
     private double harvestTime;
     private int waterNeeded;
@@ -14,8 +14,6 @@ public class Crop
     private int seedCost;
     private double basePrice;
     private double sellingPrice;
-    private int noOfWaters;
-    private int noOfFertilizes;
     private int cropBonus;
     private boolean witherStatus;
     private int witherTime;
@@ -23,7 +21,7 @@ public class Crop
     private int xpResult;
 
     public Crop(String sn, String type, double ht, int wn, int hwn, int fn, int hfn, int hc, int npp, int sc, double bp, int cb, int xp){
-        this.seedName = sn;
+        this.cropName = sn;
         this.type = type;
         this.harvestTime = ht * 60;//converts harvest time to seconds
         this.waterNeeded = wn;
@@ -36,25 +34,10 @@ public class Crop
         this.cropBonus = cb;
         this.xpResult = xp;
         this.basePrice = bp;
-
-        this.noOfFertilizes = 0;
-        this.noOfWaters = 0;
         this.witherStatus = false;
         this.witherTime = 0;
         this.prdctStayTime = 0;
         this.sellingPrice = 0;
-    }
-    private double computeSellingPrice(Type type){
-        this.sellingPrice = type.getEarnBuyBonus() + basePrice + noOfWaters * (basePrice / 4.0) + noOfFertilizes * (basePrice / 2.0) + cropBonus;
-        return sellingPrice;
-    }
-
-    public void setNoOfWaters(int noOfWaters) {
-        this.noOfWaters = noOfWaters;
-    }
-
-    public void setNoOfFertilizes(int noOfFertilizes) {
-        this.noOfFertilizes = noOfFertilizes;
     }
 
     public String getType() {
@@ -97,18 +80,6 @@ public class Crop
         return basePrice;
     }
 
-    public double getSellingPrice(Type type) {
-        return computeSellingPrice(type);
-    }
-
-    public int getNoOfWaters() {
-        return noOfWaters;
-    }
-
-    public int getNoOfFertilizes() {
-        return noOfFertilizes;
-    }
-
     public int getCropBonus() {
         return cropBonus;
     }
@@ -129,12 +100,12 @@ public class Crop
         return xpResult;
     }
 
-    public String getSeedName(){
-        return seedName;
+    public String getCropName(){
+        return cropName;
     }
     @Override
     public String toString() {
-        return  "Seed Name: " + seedName +
+        return  "Seed Name: " + cropName +
                 "\nCrop type: " + type +
                 "\nHarvest Time: " + harvestTime +
                 "\nBase Price: " + basePrice +
