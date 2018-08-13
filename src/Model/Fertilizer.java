@@ -10,11 +10,11 @@ public class Fertilizer extends Tool {
 
     @Override
     public void useTool(Tile tile, GameController gc) {
-        if(tile.getHeldCrop().getNoOfFertilizes() >= tile.getHeldCrop().getFertilizerNeeded()){//ITS IN TILE
+        if(tile.getNoOfFertilizes() >= tile.getHeldCrop().getFertilizerNeeded()){//ITS IN TILE
             tile.setFertilizeStatus(true);
             gc.changeTile(tile.getCoordinate(), "fertilizer");
         }
 
-        tile.getHeldCrop().setNoOfFertilizes(tile.getHeldCrop().getNoOfFertilizes() + 1);
+        tile.setNoOfFertilizes(tile.getNoOfFertilizes() + 1);
     }
 }

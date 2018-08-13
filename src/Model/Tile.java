@@ -27,6 +27,8 @@ public class Tile
         this.spaceStatus = !rock;
         this.witherStatus = false;
         this.heldCrop = null;
+        this.noOfFertilizes = 0;
+        this.noOfWaters = 0;
         this.sellingPrice = 0;
     }
 
@@ -96,6 +98,14 @@ public class Tile
 
     public void setHeldCrop(Crop heldCrop) {
         this.heldCrop = heldCrop;
+    }
+
+    public void setNoOfWaters(int noOfWaters) {
+        this.noOfWaters = noOfWaters;
+    }
+
+    public void setNoOfFertilizes(int noOfFertilizes) {
+        this.noOfFertilizes = noOfFertilizes;
     }
 
     /*public int getxCoord() {

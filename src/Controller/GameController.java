@@ -482,14 +482,14 @@ public class GameController {
             case "pickaxe" :((ImageView)lot.getChildren().get(coord)).setImage(unplowedTile);
                 break;
             case "wateringCan" :
-                if(p.getLot().getTile(coord).getHeldCrop().getNoOfFertilizes() >= p.getLot().getTile(coord).getHeldCrop().getFertilizerNeeded())
+                if(p.getLot().getTile(coord).getNoOfFertilizes() >= p.getLot().getTile(coord).getHeldCrop().getFertilizerNeeded())
                 ((ImageView)lot.getChildren().get(coord)).setImage(fertilizedPlowedWateredTile);//FIX GET NO OF FERTILIZERS
                 else
                 ((ImageView)lot.getChildren().get(coord)).setImage(plowedWateredTile);
                 break;
             case "plow" : ((ImageView)lot.getChildren().get(coord)).setImage(plowedTile);
                 break;
-            case "fertilizer" : if(p.getLot().getTile(coord).getHeldCrop().getNoOfWaters() >= p.getLot().getTile(coord).getHeldCrop().getWaterNeeded())
+            case "fertilizer" : if(p.getLot().getTile(coord).getNoOfWaters() >= p.getLot().getTile(coord).getHeldCrop().getWaterNeeded())
                 ((ImageView)lot.getChildren().get(coord)).setImage(fertilizedPlowedWateredTile);
                 else
                 ((ImageView)lot.getChildren().get(coord)).setImage(fertilizedPlowedTile);
