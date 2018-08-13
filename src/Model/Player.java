@@ -138,7 +138,7 @@ public class Player {
 							tile.setSpaceStatus(false);
 							xp++;
 							gameController.displaySuccess();
-                            gameController.activateCrop(i);
+                            gameController.activateCrop(i, crop);
                         }
 						else gameController.displayFail("There is a filled tile!. check the tiles above, below, and beside");
 					else {
@@ -146,7 +146,7 @@ public class Player {
 							tile.setSpaceStatus(false);
 							xp++;
 							gameController.displaySuccess();
-							gameController.activateCrop(i);
+							gameController.activateCrop(i, crop);
             		}
                 else
                     gameController.displayFail("You don't have any " + crop + " seeds." + computeNoOfSeedType(crop));
@@ -186,9 +186,11 @@ public class Player {
             case "fertilizer" :
                 if(tile.getHeldCrop() == null){
                     gameController.displayFail("Cannot use Fertilizer!\nPlant a crop first before fertilizing.");
-                }
-                else {
+                } else if (noOfFertilizers == 0){
+                	gameController.displayFail("You don't have any fertilizers!");
+				} else {
                     tools.get(3).useTool(tile, gameController);
+                    noOfFertilizers--;
                 }
                     break;
         }

@@ -30,6 +30,7 @@ public class GameController {
     @FXML private Label xp;
     @FXML private Label type;
     @FXML private Label oc;
+    @FXML private Label statusStuff;
     @FXML private Button actionPaneBuy;
     @FXML private Button actionPaneCancel;
     @FXML private Button actionPaneUse;
@@ -59,7 +60,6 @@ public class GameController {
     private Image fertilizedPlowedTile = new Image("/View/fertilizedPlowedTile.png");
     private Image fertilizedPlowedWateredTile = new Image("/View/fertilizedPlowedWateredTile.png");
     private Image plant1 = new Image("/View/plantStage1.png");
-
 
     public void initialize(){
         actionPane.setVisible(false);
@@ -134,7 +134,7 @@ public class GameController {
                 ImageView i = (ImageView) event.getSource();
                 imgSource = i.getId();
                 infoStuff.setText(new Vegetable("Turnip", "Vegetable",
-                        1  - (p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100.0), 1, 2 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 1, 1, 5, 6, 0, 1).toString() + p.computeNoOfSeedType(imgSource));
+                        (1  - (p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100.0)), 1, 2 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 1, 1, 5, 6, 0, 1).toString() + p.computeNoOfSeedType(imgSource));
             }
         });
 
@@ -147,7 +147,7 @@ public class GameController {
                 ImageView i = (ImageView) event.getSource();
                 imgSource = i.getId();
                 infoStuff.setText(new Vegetable("Carrot", "Vegetable",
-                        1.5 - (1.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100), 1, 2 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 1, r.nextInt(2) + 1, 10, 9, 0, 2).toString() + p.computeNoOfSeedType(imgSource));
+                        (1.5 - (1.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100)), 1, 2 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 1, r.nextInt(2) + 1, 10, 9, 0, 2).toString() + p.computeNoOfSeedType(imgSource));
             }
         });
 
@@ -158,7 +158,7 @@ public class GameController {
                 actionPaneBuy.setVisible(true);
                 actionPaneUse.setVisible(true);
                 infoStuff.setText(new Vegetable("Tomato", "Vegetable",
-                        2.5 - (2.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100), 3, 4 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 1, 2 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 1, r.nextInt(3) + 1, 20, 15, 0, 3).toString() + p.computeNoOfSeedType("tomato"));
+                        (2.5 - (2.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100)), 3, 4 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 1, 2 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 1, r.nextInt(3) + 1, 20, 15, 0, 3).toString() + p.computeNoOfSeedType("tomato"));
                 ImageView i = (ImageView) event.getSource();
                 imgSource = i.getId();
             }
@@ -188,6 +188,7 @@ public class GameController {
                         1 - (p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100), 1, 2 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 5, 5, 2, 1).toString() + p.computeNoOfSeedType(imgSource));
             }
         });
+
         tulip.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -197,7 +198,7 @@ public class GameController {
                 ImageView i = (ImageView) event.getSource();
                 imgSource = i.getId();
                 infoStuff.setText(new Flower("Tulip", "Flower",
-                        1.5 - (1.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100), 2, 3 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 7, 7, 2, 3).toString() + p.computeNoOfSeedType(imgSource));
+                        (1.5 - (1.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100)), 2, 3 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 7, 7, 2, 3).toString() + p.computeNoOfSeedType(imgSource));
             }
         });
 
@@ -210,7 +211,7 @@ public class GameController {
                 ImageView i = (ImageView) event.getSource();
                 imgSource = i.getId();
                 infoStuff.setText(new Flower("Stargazer", "Flower",
-                        2.5 - (2.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100), 2, 3 + p.getTypes()[p.getCurType()].getWtrFrtBonus(),0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 10, 9, 2, 5).toString() + p.computeNoOfSeedType(imgSource));
+                        (2.5 - (2.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100)), 2, 3 + p.getTypes()[p.getCurType()].getWtrFrtBonus(),0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 10, 9, 2, 5).toString() + p.computeNoOfSeedType(imgSource));
             }
         });
 
@@ -223,9 +224,10 @@ public class GameController {
                 ImageView i = (ImageView) event.getSource();
                 imgSource = i.getId();
                 infoStuff.setText(new Flower("Sunflower", "Flower",
-                        3.5 - (3.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100), 2, 3 + p.getTypes()[p.getCurType()].getWtrFrtBonus(),1, 2 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 20, 19, 2, 7).toString() + p.computeNoOfSeedType(imgSource));
+                        (3.5 - (3.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100)), 2, 3 + p.getTypes()[p.getCurType()].getWtrFrtBonus(),1, 2 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 20, 19, 2, 7).toString() + p.computeNoOfSeedType(imgSource));
             }
         });
+
         mango.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -291,20 +293,21 @@ public class GameController {
         actionPaneBuy.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                System.out.println((1  - (p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100.0)));
                 seedDisplay.setVisible(false);
                 actionPane.setVisible(false);
                 switch (imgSource) {
                     case "turnip":
                         p.buySeeds(new Vegetable("Turnip", "Vegetable",
-                            1  - (p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100.0), 1, 2 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 1, 1, 5, 6, 0, 1));
+                                (1  - (p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100.0)), 1, 2 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 1, 1, 5, 6, 0, 1));
                         break;
                     case "carrot" :
                         p.buySeeds(new Vegetable("Carrot", "Vegetable",
-                            1.5 - (1.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100), 1, 2 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 1, r.nextInt(2) + 1, 10, 9, 0, 2));
+                                (1.5 - (1.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100)), 1, 2 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 1, r.nextInt(2) + 1, 10, 9, 0, 2));
                         break;
                     case "tomato" :
                         p.buySeeds(new Vegetable("Tomato", "Vegetable",
-                            2.5 - (2.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100), 3, 4 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 1, 2 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 1, r.nextInt(3) + 1, 20, 15, 0, 3));
+                                (2.5 - (2.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100)), 3, 4 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 1, 2 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 1, r.nextInt(3) + 1, 20, 15, 0, 3));
                         break;
                     case "potato" :
                         p.buySeeds(new Vegetable("Potato", "Vegetable",
@@ -316,15 +319,15 @@ public class GameController {
                         break;
                     case "tulip" :
                         p.buySeeds(new Flower("Tulip", "Flower",
-                            1.5 - (1.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100), 2, 3 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 7, 7, 2, 3));
+                                (1.5 - (1.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100)), 2, 3 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 7, 7, 2, 3));
                         break;
                     case "stargazer" :
                         p.buySeeds(new Flower("Stargazer", "Flower",
-                            2.5 - (2.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100), 2, 3 + p.getTypes()[p.getCurType()].getWtrFrtBonus(),0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 10, 9, 2, 5));
+                                (2.5 - (2.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100)), 2, 3 + p.getTypes()[p.getCurType()].getWtrFrtBonus(),0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 10, 9, 2, 5));
                         break;
                     case "sunflower" :
                         p.buySeeds(new Flower("Sunflower", "Flower",
-                            3.5 - (3.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100), 2, 3 + p.getTypes()[p.getCurType()].getWtrFrtBonus(),1, 2 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 20, 19, 2, 7));
+                                (3.5 - (3.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100)), 2, 3 + p.getTypes()[p.getCurType()].getWtrFrtBonus(),1, 2 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 20, 19, 2, 7));
                         break;
                     case "mango" :
                         p.buySeeds(new FruitTree("Mango", "Fruit Tree",
@@ -405,10 +408,10 @@ public class GameController {
             extra = " more level to to be eligible for upgrading.";
         else
             extra = " more levels to be eligible for upgrading.";
-        infoStuff.setText("You need " + kulang + extra);
+        statusStuff.setText("You need " + kulang + extra);
     }
     public void displayFail(String text){
-        infoStuff.setText(text);
+        statusStuff.setText(text);
     }//displays error text, probably should be in another label
 
     public void displayInfo(String info){
@@ -416,7 +419,7 @@ public class GameController {
     }//displays information for label, can be for seed and tool
 
     public void displaySuccess(){
-        infoStuff.setText("SUCCESS B");
+        statusStuff.setText("SUCCESS B");
     }
 
     public void resetTiles(){//changes tiles back to show information only
@@ -461,7 +464,6 @@ public class GameController {
                         case "pickaxe" : p.useTool(tool, p.getLot().getTile(x));
                             break;
                         case "wateringCan" : p.useTool(tool, p.getLot().getTile(x));
-                            System.out.println(tool);
                             break;
                         case "plow" : p.useTool(tool, p.getLot().getTile(x));
                             break;
@@ -473,26 +475,51 @@ public class GameController {
         }
     }
 
-    public void activateCrop(int coord){//set visibility of specified crop to true
+    public void activateCrop(int coord, String crop){//set visibility of specified crop to true
         ((ImageView)plantDisplay.getChildren().get(coord)).setImage(plant1);
+        System.out.println("");
+        //p.getLot().getTile(coord).getHeldCrop().getHarvestTime()
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    Thread.sleep((long)(1000));//sleeps the thread until harvest time
+                } catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+
+                if(p.getLot().getTile(coord).getNoOfWaters() >= p.getLot().getTile(coord).getHeldCrop().getWaterNeeded() &&
+                    p.getLot().getTile(coord).getNoOfFertilizes() >= p.getLot().getTile(coord).getHeldCrop().getFertilizerNeeded()){
+                    ((ImageView)plantDisplay.getChildren().get(coord)).setImage(new Image("/View/" + crop + ".png"));
+                }
+                else{
+                    System.out.println("MALI GAGO");
+                    ((ImageView)plantDisplay.getChildren().get(coord)).setImage(null);
+                }
+            }
+        });
+        t.setDaemon(true);
+        t.start();
     }
 
     public void changeTile(int coord, String source){//change lot tile image
         switch(source){
-            case "pickaxe" :((ImageView)lot.getChildren().get(coord)).setImage(unplowedTile);
+            case "pickaxe" :
+                ((ImageView)lot.getChildren().get(coord)).setImage(unplowedTile);
                 break;
             case "wateringCan" :
                 if(p.getLot().getTile(coord).getNoOfFertilizes() >= p.getLot().getTile(coord).getHeldCrop().getFertilizerNeeded())
-                ((ImageView)lot.getChildren().get(coord)).setImage(fertilizedPlowedWateredTile);//FIX GET NO OF FERTILIZERS
+                    ((ImageView)lot.getChildren().get(coord)).setImage(fertilizedPlowedWateredTile);//FIX GET NO OF FERTILIZERS
                 else
-                ((ImageView)lot.getChildren().get(coord)).setImage(plowedWateredTile);
+                    ((ImageView)lot.getChildren().get(coord)).setImage(plowedWateredTile);
                 break;
             case "plow" : ((ImageView)lot.getChildren().get(coord)).setImage(plowedTile);
                 break;
-            case "fertilizer" : if(p.getLot().getTile(coord).getNoOfWaters() >= p.getLot().getTile(coord).getHeldCrop().getWaterNeeded())
-                ((ImageView)lot.getChildren().get(coord)).setImage(fertilizedPlowedWateredTile);
+            case "fertilizer" :
+                if(p.getLot().getTile(coord).getNoOfWaters() >= p.getLot().getTile(coord).getHeldCrop().getWaterNeeded())
+                    ((ImageView)lot.getChildren().get(coord)).setImage(fertilizedPlowedWateredTile);
                 else
-                ((ImageView)lot.getChildren().get(coord)).setImage(fertilizedPlowedTile);
+                    ((ImageView)lot.getChildren().get(coord)).setImage(fertilizedPlowedTile);
                 break;
         }
     }

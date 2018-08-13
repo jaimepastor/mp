@@ -100,6 +100,24 @@ public class Crop
         return xpResult;
     }
 
+    public double computeSellingPrice(int flb, int noOfWaters, int noOfFertilizes){
+        double wb, fb;
+
+        if(noOfWaters >= highWaterNeeded)
+            wb = 1.0 * highWaterNeeded * basePrice / 4;
+        else
+            wb = 1.0 * noOfWaters * basePrice / 4;
+
+        if(noOfFertilizes >= highFertilizerNeeded)
+            fb = 1.0 * highFertilizerNeeded * basePrice / 4;
+        else
+            fb = 1.0 * highFertilizerNeeded * basePrice / 4;
+
+        this.sellingPrice = flb + basePrice + wb + fb + cropBonus;
+
+        return sellingPrice;
+    }
+
     public String getCropName(){
         return cropName;
     }

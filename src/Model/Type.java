@@ -6,11 +6,11 @@ public class Type
     private int levelReq;
     private int earnBuyBonus;
     private int wtrFrtBonus;
-    private int hrvstTimeBonus;
+    private long hrvstTimeBonus;
     private int regFee;
     private boolean isRegistered;
 
-    public Type(String type, int req, int EBB, int WFB, int HTB, int regFee, boolean reg)
+    public Type(String type, int req, int EBB, int WFB, long HTB, int regFee, boolean reg)
     {
         this.type = type;
         this.levelReq = req;
@@ -42,7 +42,7 @@ public class Type
         return wtrFrtBonus;
     }
 
-    public int getHrvstTimeBonus() {
+    public long getHrvstTimeBonus() {
         return hrvstTimeBonus;
     }
 
