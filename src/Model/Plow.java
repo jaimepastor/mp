@@ -22,6 +22,7 @@ public class Plow extends Tool
             if(tile.getWitherStatus() == false)//if tile has not withered yet
                 if(tile.getHeldCrop().getHarvestTime() >= 0) {//if crop can still be harvested
                     System.out.print("harvested with products");
+
                     //remove crop
                     //get produce
                     //sell

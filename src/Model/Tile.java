@@ -156,6 +156,18 @@ public class Tile
         return heldCrop;
     }
 
+    public void resetTile(){
+        this.spaceStatus = true;
+        this.plowStatus = false;
+        this.waterStatus = false;
+        this.fertilizeStatus = false;
+        this.witherStatus = false;
+        this.noOfWaters = 0;
+        this.noOfFertilizes = 0;
+        this.sellingPrice = 0;
+        this.heldCrop = null;
+    }
+
     private double computeSellingPrice(Type type){
         this.sellingPrice = type.getEarnBuyBonus() + heldCrop.getBasePrice() + noOfWaters * (heldCrop.getBasePrice() / 4.0) + noOfFertilizes * (heldCrop.getBasePrice() / 2.0) + heldCrop.getCropBonus();
         return sellingPrice;
@@ -165,10 +177,8 @@ public class Tile
         String information = "Coordinate: " + coordinate + "\nIs Plowed: " + Boolean.toString(plowStatus) + "\nIs Watered: " + Boolean.toString(waterStatus)
                 + "\nHas Rock: " + Boolean.toString(rockStatus) + "\nHas Space: " + Boolean.toString(spaceStatus) + "\nIs Crop Withered: " + Boolean.toString(witherStatus) + "\nCurrent Crop: ";
         if(heldCrop == null)
-            information.concat("null");
+            return information.concat("null");
         else
-            information.concat(/*heldCrop.getSeedName()*/"JOWI");
-
-        return information;
+           return information.concat(heldCrop.getCropName());
     }
 }

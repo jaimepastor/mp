@@ -21,7 +21,8 @@ public class Lot
 
     private void initializeTiles(){
         Random r = new Random();
+        boolean rock = false;
         for(int y = 0; y < 50; y++)
-                tiles[y] = new Tile(y, r.nextBoolean());//ROCKDIMIZER
+            tiles[y] = new Tile(y, r.nextBoolean());//ROCKDIMIZER
     }
 }

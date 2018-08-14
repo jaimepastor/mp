@@ -60,6 +60,7 @@ public class GameController {
     private Image fertilizedPlowedTile = new Image("/View/fertilizedPlowedTile.png");
     private Image fertilizedPlowedWateredTile = new Image("/View/fertilizedPlowedWateredTile.png");
     private Image plant1 = new Image("/View/plantStage1.png");
+    private Image witheredPlant = new Image("/View/withered.png");
 
     public void initialize(){
         actionPane.setVisible(false);
@@ -294,8 +295,6 @@ public class GameController {
             @Override
             public void handle(MouseEvent event) {
                 System.out.println((1  - (p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100.0)));
-                seedDisplay.setVisible(false);
-                actionPane.setVisible(false);
                 switch (imgSource) {
                     case "turnip":
                         p.buySeeds(new Vegetable("Turnip", "Vegetable",
@@ -357,7 +356,6 @@ public class GameController {
             @Override
             public void handle(MouseEvent event) {
                 infoStuff.setText("CHOOSE A TILE!");
-                actionPane.setVisible(false);
                 actionMode(imgSource);
             }
         });
@@ -424,15 +422,19 @@ public class GameController {
 
     public void resetTiles(){//changes tiles back to show information only
         for(int i = 0; i < 50; i++) {
-            final int x = i;
-            buttonDisplay.getChildren().get(x).setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    infoStuff.setText(p.getLot().getTile(x).toString());
-                }
-            });
+            resetTile(i);
         }
         infoStuff.setText("i love hime");
+    }
+
+    public void resetTile(int i){//index of tile to be changed
+        buttonDisplay.getChildren().get(i).setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                infoStuff.setText(p.getLot().getTile(i).toString());
+            }
+        });
+
     }
 
     public void actionMode(String tool){//changes behavior of each button tile
@@ -477,28 +479,65 @@ public class GameController {
 
     public void activateCrop(int coord, String crop){//set visibility of specified crop to true
         ((ImageView)plantDisplay.getChildren().get(coord)).setImage(plant1);
-        System.out.println("");
         //p.getLot().getTile(coord).getHeldCrop().getHarvestTime()
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
+                boolean run = true;
+                double timer = 60;//seconds!
                 try{
-                    Thread.sleep((long)(1000));//sleeps the thread until harvest time
+                    Thread.sleep((long)(5000));//sleeps the thread until harvest time
                 } catch (InterruptedException e){
                     e.printStackTrace();
                 }
-
                 if(p.getLot().getTile(coord).getNoOfWaters() >= p.getLot().getTile(coord).getHeldCrop().getWaterNeeded() &&
-                    p.getLot().getTile(coord).getNoOfFertilizes() >= p.getLot().getTile(coord).getHeldCrop().getFertilizerNeeded()){
+                    p.getLot().getTile(coord).getNoOfFertilizes() >= p.getLot().getTile(coord).getHeldCrop().getFertilizerNeeded()){//naalaga ng tama
+                    System.out.println("NAALAGA NG TAMA");
+                    ((ImageView)lot.getChildren().get(coord)).setImage(null);
                     ((ImageView)plantDisplay.getChildren().get(coord)).setImage(new Image("/View/" + crop + ".png"));
+                    buttonDisplay.getChildren().get(coord).setOnMouseClicked(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            p.harvestCrop(p.getLot().getTile(coord));
+                            resetTile(coord);
+                        }
+                    });
+                    while(timer > 0){//while to check if crop has been harvest yet
+                        try{
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e){
+                            e.printStackTrace();
+                        }
+                        timer--;
+                        if(p.getLot().getTile(coord).getSpaceStatus() == true){//IF NAKA HARVEST NAAAAAAAAAAA
+                            break;
+                        }
+                    }
                 }
-                else{
-                    System.out.println("MALI GAGO");
-                    ((ImageView)plantDisplay.getChildren().get(coord)).setImage(null);
+                else{//wither block
+                    System.out.println("PATAY :(");
+                    statusStuff.setText("Plant in tile " + (coord + 1) + " has withered! Plow it for " + (p.getLot().getTile(coord).getHeldCrop().getSeedCost() / 10.0));
+                    timer = p.getLot().getTile(coord).getHeldCrop().getHarvestTime() * 2;
+                    ((ImageView)plantDisplay.getChildren().get(coord)).setImage(witheredPlant);
+                    while(timer > 0){//wither checking
+                        try{
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e){
+                            e.printStackTrace();
+                        }
+                        timer--;
+                        if(p.getLot().getTile(coord).getSpaceStatus() == true)
+                            break;
+                        else if(timer == 0)
+                            statusStuff.setText(p.getLot().getTile(coord).getHeldCrop().getCropName() + " in Tile " + coord + " has withered away!");
+                    }
                 }
+                ((ImageView)plantDisplay.getChildren().get(coord)).setImage(null);
+                ((ImageView)lot.getChildren().get(coord)).setImage(unplowedTile);
+                p.getLot().getTile(coord).resetTile();
             }
         });
-        t.setDaemon(true);
+        t.setDaemon(true);//kills thread after everything is done
         t.start();
     }
 

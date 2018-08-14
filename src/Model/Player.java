@@ -1,14 +1,13 @@
 package Model;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import Controller.GameController;
 
 public class Player {
 	private String name;
 	private Lot lot;
-	private int OC;
+	private double OC;
 	private int xp;
 	private int level;
 	private Type[] types;
@@ -24,13 +23,11 @@ public class Player {
 		this.lot = new Lot();
 		this.OC = 10000;
 		this.xp = 0;
-		this.level = 15 ;
-		this.curType = 1;
+		this.level = 0;
+		this.curType = 0;
 		this.tools = new ArrayList<>();
 		this.seeds = new ArrayList<>();
 		this.noOfFertilizers = 5;
-		this.gameController = gc;
-
 		this.gameController = gc;
 		initializeFarmerTypes();
 		initializeTools();
@@ -139,6 +136,9 @@ public class Player {
 							xp++;
 							gameController.displaySuccess();
                             gameController.activateCrop(i, crop);
+
+                            updateLevel();
+                            gameController.update();
                         }
 						else gameController.displayFail("There is a filled tile!. check the tiles above, below, and beside");
 					else {
@@ -147,6 +147,9 @@ public class Player {
 							xp++;
 							gameController.displaySuccess();
 							gameController.activateCrop(i, crop);
+
+							updateLevel();
+							gameController.update();
             		}
                 else
                     gameController.displayFail("You don't have any " + crop + " seeds." + computeNoOfSeedType(crop));
@@ -157,7 +160,11 @@ public class Player {
 	}
 
 	public void harvestCrop(Tile tile) {
-
+		System.out.println("HARVESTED LESTS GOOOOOOO");
+		xp = tile.getHeldCrop().getXpResult() * tile.getHeldCrop().getNoPrdctsPrdced();
+		OC += tile.getHeldCrop().computeSellingPrice(types[curType].getEarnBuyBonus(), tile.getNoOfWaters(), tile.getNoOfFertilizes());
+		tile.resetTile();
+		gameController.update();
 	}
 
 	public void useTool(String tool, Tile tile){
@@ -166,21 +173,26 @@ public class Player {
                     gameController.displayFail("Cannot use Pickaxe");
                 } else {
             		tools.get(0).useTool(tile, gameController);
+            		xp += 5;
 				}
                     break;
             case "wateringCan" :
                 if(tile.getHeldCrop() == null){
                     gameController.displayFail("Cannot use Watering Can!\nPlant a crop first before watering.");
-                }
-                else{
+                } else if (tile.getNoOfWaters() >= tile.getHeldCrop().getHighWaterNeeded()){
+                    gameController.displayFail("No more fertilizer is allowed.");
+                } else{
                     tools.get(1).useTool(tile, gameController);
+                    xp++;
                 }
                     break;
-            case "plow" : if(tile.getPlowStatus() == true){
-                    gameController.displayFail("Cannot use Plow");
+            case "plow" : if(tile.getRockStatus() == true) {
+                    gameController.displayFail("Tile still has rock!");
+                } else if(tile.getPlowStatus() == true && tile.getWitherStatus() == false && tile.getSpaceStatus() == true) {
+                    gameController.displayFail("Tile is already plowed.");
                 } else {
-                System.out.println(Boolean.toString(tile.getWitherStatus()));
                     tools.get(2).useTool(tile, gameController);
+                    xp++;
                 }
                     break;
             case "fertilizer" :
@@ -188,9 +200,12 @@ public class Player {
                     gameController.displayFail("Cannot use Fertilizer!\nPlant a crop first before fertilizing.");
                 } else if (noOfFertilizers == 0){
                 	gameController.displayFail("You don't have any fertilizers!");
-				} else {
+				} else if (tile.getNoOfFertilizes() >= tile.getHeldCrop().getHighFertilizerNeeded()){
+                    gameController.displayFail("No more fertilizer is allowed.");
+                } else {
                     tools.get(3).useTool(tile, gameController);
                     noOfFertilizers--;
+                    xp++;
                 }
                     break;
         }
@@ -212,7 +227,7 @@ public class Player {
         return level;
     }
 
-    public int getOC(){
+    public double getOC(){
 	    return OC;
     }
 
@@ -223,6 +238,7 @@ public class Player {
     public int getNoOfFertilizers() {
 		return noOfFertilizers;
 	}
+
 	public String getFarmerType(){
 		return types[curType].getType();
 	}
