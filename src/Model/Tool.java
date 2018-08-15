@@ -2,23 +2,36 @@ package Model;
 
 import Controller.GameController;
 
+/**
+ * Player is the main model class and where all the model-related methods are located.
+ *
+ * @Author Jaime Alfonso R. Pastor 11726024
+ * @Version 1.00
+ */
 public abstract class Tool
 {
     private String information;
-    private String name;
 
-    public Tool(String name, String information){
+    /**
+     * Abstract Constructor for Tool superclass
+     * @param information
+     */
+    public Tool(String information){
         this.information = information;
-        this.name = name;
     }
 
+    /**
+     * Getter for Information on Tool.
+     * @return
+     */
     public String getInformation() {
         return information;
     }
 
-    public String getName() {
-        return name;
-    }
-
+    /**
+     * Abstract method for useTool
+     * @param tile represents tile to be acted on
+     * @param gc represents Controller associated with the model.
+     */
     public abstract void useTool(Tile tile, GameController gc);
 }

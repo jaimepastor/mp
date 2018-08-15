@@ -2,6 +2,9 @@ package Model;
 
 import Controller.GameController;
 
+/**
+ * Class for the individual Tiles.
+ */
 public class Tile
 {
     //private int xCoord;
@@ -18,6 +21,11 @@ public class Tile
     private int noOfFertilizes;
     private double sellingPrice;
 
+    /**
+     * Constructor for the Tiles.
+     * @param coordinate represents coordinate of Tile.
+     * @param rock represents if tile has rock.
+     */
     public Tile(int coordinate, boolean rock){
         //this.xCoord = xCoord;
         //this.yCoord = yCoord;
@@ -34,131 +42,147 @@ public class Tile
         this.sellingPrice = 0;
     }
 
-    public boolean treeValid(Tile up, Tile upRight, Tile right, Tile downRight, Tile down, Tile downLeft, Tile left, Tile upLeft, Tile current){
-        switch(current.getCoordinate()){
-            case 0 : if (down.getSpaceStatus() == true && right.getSpaceStatus() == true && downRight.getSpaceStatus() == true)//upper left corner
-                    return true;
-                break;
-            case 9 :  if(down.getSpaceStatus() == true && left.getSpaceStatus() == true && downLeft.getSpaceStatus() == true)//upper right corner
-                    return true;
-                break;
-            case 40 : if(up.getSpaceStatus() == true && right.getSpaceStatus() == true && upRight.getSpaceStatus() == true)//lower left corner
-                    return true;
-                break;
-            case 49 : if(up.getSpaceStatus() == true && left.getSpaceStatus() == true && upLeft.getSpaceStatus() == true)//lower right corner
-                    return true;
-                break;
-            case 10 : case 20 : case 30 : //left side
-                if(up.getSpaceStatus() == true && down.getSpaceStatus() == true && right.getSpaceStatus() == true && upRight.getSpaceStatus() == true && downRight.getSpaceStatus() == true)
-                    return true;
-                break;
-            case 19 : case 29 : case 39 : //right side
-                if(up.getSpaceStatus() == true && down.getSpaceStatus() == true && left.getSpaceStatus() == true && upLeft.getSpaceStatus() == true && downLeft.getSpaceStatus() == true)
-                    return true;
-                break;
-            case 1 : case 2 : case 3 : case 4 : case 5 : case 6 : case 7 : case 8 : //top side
-                if(down.getSpaceStatus() == true && left.getSpaceStatus() == true && right.getSpaceStatus() == true && downLeft.getSpaceStatus() == true && downRight.getSpaceStatus() == true)
-                    return true;
-                break;
-            case 41 : case 42 : case 43 : case 44 : case 45 : case 46 : case 47 : case 48 : //bottom side
-                if(up.getSpaceStatus() == true && left.getSpaceStatus() == true && right.getSpaceStatus() == true && upLeft.getSpaceStatus() == true && upRight.getSpaceStatus() == true)
-                    return true;
-                break;
-            default : //everything inside
-                if(up.getSpaceStatus() == true && down.getSpaceStatus() == true && right.getSpaceStatus() == true && left.getSpaceStatus() == true &&
-                        upRight.getSpaceStatus() == true && downRight.getSpaceStatus() == true && downLeft.getSpaceStatus() == true && upLeft.getSpaceStatus() == true)
-                    return true;
-                break;
-        }
-
-        return false;
-    }
-
+    /**
+     * Setter for Plow Status
+     * @param plowStatus represents plow status of the tile in boolean
+     */
     public void setPlowStatus(boolean plowStatus) {
         this.plowStatus = plowStatus;
     }
 
+    /**
+     * Setter for Water Status
+     * @param waterStatus represents water status of the tile in boolean
+     */
     public void setWaterStatus(boolean waterStatus) {
         this.waterStatus = waterStatus;
     }
 
+    /**
+     * Setter for Space Status
+     * @param spaceStatus represents presence of space in the tile in boolean
+     */
     public void setSpaceStatus(boolean spaceStatus) {
         this.spaceStatus = spaceStatus;
     }
 
+    /**
+     * Setter for Rock Status
+     * @param rockStatus represents presence of rocks int the tile in boolean
+     */
     public void setRockStatus(boolean rockStatus) {
         this.rockStatus = rockStatus;
     }
 
+    /**
+     * Changes the status of the Tile to withered, indicating that the Crop should be in withered state.
+     * @param gc
+     */
     public void witherTile(GameController gc) {
         this.witherStatus = true;
         gc.displayStatus(heldCrop.getCropName() + " in tile " + (coordinate + 1) + " has withered! Plow it for " + (heldCrop.getSeedCost() / 10.0));
     }
 
+    /**
+     * Setter for Fertilized Status
+     * @param fertilizeStatus represents fertilize status of the tile in boolean
+     */
     public void setFertilizeStatus(boolean fertilizeStatus) {
         this.fertilizeStatus = fertilizeStatus;
     }
 
+    /**
+     * Setter for the Held Crop of the Tile.
+     * @param heldCrop represents the Crop that the Tile will hold.
+     */
     public void setHeldCrop(Crop heldCrop) {
         this.heldCrop = heldCrop;
     }
 
+    /**
+     * Setter for Number of times the Tile was watered.
+     * @param noOfWaters represents the number of times this action occurred.
+     */
     public void setNoOfWaters(int noOfWaters) {
         this.noOfWaters = noOfWaters;
     }
 
+    /**
+     * Setter for Number of times the Tile was fertilized.
+     * @param noOfFertilizes represents the number of times this action occurred.
+     */
     public void setNoOfFertilizes(int noOfFertilizes) {
         this.noOfFertilizes = noOfFertilizes;
     }
 
-    /*public int getxCoord() {
-        return xCoord;
-    }
-
-    public int getyCoord() {
-        return yCoord;
-    }*/
-
+    /**
+     * Getter for the coordinate of this Tile.
+     * @return returns int value of the coordinate.
+     */
     public int getCoordinate(){
         return coordinate;
     }
 
+    /**
+     * Getter for the Plow Status of the Tile.
+     * @return returns the boolean value of the plow status.
+     */
     public boolean getPlowStatus(){
         return this.plowStatus;
     }
 
-    public boolean getWaterStatus(){
-        return this.waterStatus;
-    }
 
+    /**
+     * Getter for the Space Status of the Tile.
+     * @return returns the boolean value of the Space status.
+     */
     public boolean getSpaceStatus(){
         return this.spaceStatus;
     }
 
+    /**
+     * Getter for the RockStatus of the Tile.
+     * @return returns the boolean value of the Rock status.
+     */
     public boolean getRockStatus(){
         return this.rockStatus;
     }
 
+    /**
+     * Getter for the Wither Status of the Tile.
+     * @return returns the boolean value of the Wither status.
+     */
     public boolean getWitherStatus(){
         return this.witherStatus;
     }
 
-    public boolean getFertilizeStatus() {
-        return fertilizeStatus;
-    }
-
+    /**
+     * Getter for the Number of Fertilizes on the Tile.
+     * @return returns the int value of that number.
+     */
     public int getNoOfFertilizes() {
         return noOfFertilizes;
     }
 
+    /**
+     * Getter for the Number of Waters on the Tile.
+     * @return returns the int value of that number.
+     */
     public int getNoOfWaters() {
         return noOfWaters;
     }
 
+    /**
+     * Getter for the Crop on the Tile.
+     * @return returns the Crop.
+     */
     public Crop getHeldCrop() {
         return heldCrop;
     }
 
+    /**
+     * Resets the Tile to what it was when the Lot was first instantiated and the tiles were initialized.
+     */
     public void resetTile(){
         this.spaceStatus = true;
         this.plowStatus = false;
@@ -171,11 +195,10 @@ public class Tile
         this.heldCrop = null;
     }
 
-    private double computeSellingPrice(Type type){
-        this.sellingPrice = type.getEarnBuyBonus() + heldCrop.getBasePrice() + noOfWaters * (heldCrop.getBasePrice() / 4.0) + noOfFertilizes * (heldCrop.getBasePrice() / 2.0) + heldCrop.getCropBonus();
-        return sellingPrice;
-    }
-
+    /**
+     * Overwritten method for the Object superclass toString.
+     * @return returns the coordinate, plowStatus, waterStaatus, rockStatus, spaceStatus, witherStatus, and cropName values in a formatted String.
+     */
     public String toString(){
         String information = "Coordinate: " + (coordinate + 1) + "\nIs Plowed: " + Boolean.toString(plowStatus) + "\nIs Watered: " + Boolean.toString(waterStatus)
                 + "\nHas Rock: " + Boolean.toString(rockStatus) + "\nHas Space: " + Boolean.toString(spaceStatus) + "\nIs Crop Withered: " + Boolean.toString(witherStatus) + "\nCurrent Crop: ";

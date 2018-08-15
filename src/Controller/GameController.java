@@ -62,6 +62,7 @@ public class GameController {
     private Image fertilizedPlowedWateredTile = new Image("/View/fertilizedPlowedWateredTile.png");
     private Image plant1 = new Image("/View/plantStage1.png");
     private Image witheredPlant = new Image("/View/withered.png");
+    private Image takenTree = new Image("/View/takenTree.png");
 
     public void initialize(){
         actionPane.setVisible(false);
@@ -188,7 +189,7 @@ public class GameController {
                 ImageView i = (ImageView) event.getSource();
                 imgSource = i.getId();
                 infoStuff.setText(new Flower("Rose", "Flower",
-                        1 - (p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100), 1, 2 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 5, 5, 2, 1, p.getTypes()[p.getCurType()].getEarnBuyBonus()).toString() + p.computeNoOfSeedType(imgSource));
+                        1 - (p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100), 1, 2 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 5, 5, 0, 1, p.getTypes()[p.getCurType()].getEarnBuyBonus()).toString() + p.computeNoOfSeedType(imgSource));
             }
         });
 
@@ -201,7 +202,7 @@ public class GameController {
                 ImageView i = (ImageView) event.getSource();
                 imgSource = i.getId();
                 infoStuff.setText(new Flower("Tulip", "Flower",
-                        (1.5 - (1.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100)), 2, 3 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 7, 7, 2, 3, p.getTypes()[p.getCurType()].getEarnBuyBonus()).toString() + p.computeNoOfSeedType(imgSource));
+                        (1.5 - (1.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100)), 2, 3 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 7, 7, 0, 3, p.getTypes()[p.getCurType()].getEarnBuyBonus()).toString() + p.computeNoOfSeedType(imgSource));
             }
         });
 
@@ -214,7 +215,7 @@ public class GameController {
                 ImageView i = (ImageView) event.getSource();
                 imgSource = i.getId();
                 infoStuff.setText(new Flower("Stargazer", "Flower",
-                        (2.5 - (2.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100)), 2, 3 + p.getTypes()[p.getCurType()].getWtrFrtBonus(),0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 10, 9, 2, 5, p.getTypes()[p.getCurType()].getEarnBuyBonus()).toString() + p.computeNoOfSeedType(imgSource));
+                        (2.5 - (2.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100)), 2, 3 + p.getTypes()[p.getCurType()].getWtrFrtBonus(),0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 10, 9, 0, 5, p.getTypes()[p.getCurType()].getEarnBuyBonus()).toString() + p.computeNoOfSeedType(imgSource));
             }
         });
 
@@ -227,7 +228,7 @@ public class GameController {
                 ImageView i = (ImageView) event.getSource();
                 imgSource = i.getId();
                 infoStuff.setText(new Flower("Sunflower", "Flower",
-                        (3.5 - (3.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100)), 2, 3 + p.getTypes()[p.getCurType()].getWtrFrtBonus(),1, 2 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 20, 19, 2, 7, p.getTypes()[p.getCurType()].getEarnBuyBonus()).toString() + p.computeNoOfSeedType(imgSource));
+                        (3.5 - (3.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100)), 2, 3 + p.getTypes()[p.getCurType()].getWtrFrtBonus(),1, 2 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 20, 19, 0, 7, p.getTypes()[p.getCurType()].getEarnBuyBonus()).toString() + p.computeNoOfSeedType(imgSource));
             }
         });
 
@@ -296,7 +297,6 @@ public class GameController {
         actionPaneBuy.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println((1  - (p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100.0)));
                 switch (imgSource) {
                     case "turnip":
                         p.buySeeds(new Vegetable("Turnip", "Vegetable",
@@ -316,19 +316,19 @@ public class GameController {
                         break;
                     case "rose" :
                         p.buySeeds(new Flower("Rose", "Flower",
-                            1 - (p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100), 1, 2 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 5, 5, 2, 1, p.getTypes()[p.getCurType()].getEarnBuyBonus()));
+                            1 - (p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100), 1, 2 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 5, 5, 0, 1, p.getTypes()[p.getCurType()].getEarnBuyBonus()));
                         break;
                     case "tulip" :
                         p.buySeeds(new Flower("Tulip", "Flower",
-                                (1.5 - (1.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100)), 2, 3 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 7, 7, 2, 3, p.getTypes()[p.getCurType()].getEarnBuyBonus()));
+                                (1.5 - (1.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100)), 2, 3 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 7, 7, 0, 3, p.getTypes()[p.getCurType()].getEarnBuyBonus()));
                         break;
                     case "stargazer" :
                         p.buySeeds(new Flower("Stargazer", "Flower",
-                                (2.5 - (2.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100)), 2, 3 + p.getTypes()[p.getCurType()].getWtrFrtBonus(),0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 10, 9, 2, 5, p.getTypes()[p.getCurType()].getEarnBuyBonus()));
+                                (2.5 - (2.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100)), 2, 3 + p.getTypes()[p.getCurType()].getWtrFrtBonus(),0, 1 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 10, 9, 0, 5, p.getTypes()[p.getCurType()].getEarnBuyBonus()));
                         break;
                     case "sunflower" :
                         p.buySeeds(new Flower("Sunflower", "Flower",
-                                (3.5 - (3.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100)), 2, 3 + p.getTypes()[p.getCurType()].getWtrFrtBonus(),1, 2 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 20, 19, 2, 7, p.getTypes()[p.getCurType()].getEarnBuyBonus()));
+                                (3.5 - (3.5 * p.getTypes()[p.getCurType()].getHrvstTimeBonus() / 100)), 2, 3 + p.getTypes()[p.getCurType()].getWtrFrtBonus(),1, 2 + p.getTypes()[p.getCurType()].getWtrFrtBonus(), 2, 1, 20, 19, 0, 7, p.getTypes()[p.getCurType()].getEarnBuyBonus()));
                         break;
                     case "mango" :
                         p.buySeeds(new FruitTree("Mango", "Fruit Tree",
@@ -421,7 +421,7 @@ public class GameController {
     }//displays information for label, can be for seed and tool
 
     public void displayStatus(String info){
-        GameController.this.statusStuff.setText(info);
+        statusStuff.setText(info);
     }
 
     public void displaySuccess(){
@@ -490,9 +490,9 @@ public class GameController {
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
-                double timer = 5;//seconds! pls change to 60 when done
+                double timer = 60.0;
                 try{
-                    Thread.sleep((long)(5000));//sleeps the thread until harvest time. pls //p.getLot().getTile(coord).getHeldCrop().getHarvestTime()
+                    Thread.sleep((long)p.getLot().getTile(coord).getHeldCrop().getHarvestTime() * 1000);//sleeps the thread until harvest time. pls //p.getLot().getTile(coord).getHeldCrop().getHarvestTime()
                 } catch (InterruptedException e){
                     e.printStackTrace();
                 }
@@ -505,7 +505,6 @@ public class GameController {
                         @Override
                         public void handle(MouseEvent event) {
                             p.harvestCrop(p.getLot().getTile(coord));
-                            resetTile(coord);
                         }
                     });
                     while(timer > 0){//while to check if crop has been harvest yet
@@ -514,7 +513,8 @@ public class GameController {
                         } catch (InterruptedException e){
                             e.printStackTrace();
                         }
-                        timer--;
+
+                        timer -= 1.0;
                         if(p.getLot().getTile(coord).getSpaceStatus() == true){//IF NAKA HARVEST NAAAAAAAAAAA
                             break;
                         } else if (p.getLot().getTile(coord).getSpaceStatus() == false && timer == 0){//if plant was harvested
@@ -532,7 +532,14 @@ public class GameController {
                             p.getLot().getTile(coord).witherTile(GameController.this);
                         }
                     });
-                    timer = /* p.getLot().getTile(coord).getHeldCrop().getHarvestTime() */ 2;//
+                    buttonDisplay.getChildren().get(coord).setOnMouseClicked(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            p.useTool("plow", p.getLot().getTile(coord));
+                        }
+                    });
+
+                    timer = p.getLot().getTile(coord).getHeldCrop().getHarvestTime() * 2;//
                     ((ImageView)plantDisplay.getChildren().get(coord)).setImage(witheredPlant);
                     while(timer > 0){//wither checking
                         try{
@@ -540,7 +547,7 @@ public class GameController {
                         } catch (InterruptedException e){
                             e.printStackTrace();
                         }
-                        timer--;
+                        timer -= 1.0;
                         if(p.getLot().getTile(coord).getSpaceStatus() == true)
                             break;
                     }
@@ -555,8 +562,8 @@ public class GameController {
         t.start();
     }
 
-    public void changeTile(int coord, String source){//change lot tile image
-        switch(source){
+    public void changeTile(int coord, String action){//change lot tile image
+        switch(action){
             case "pickaxe" :
                 ((ImageView)lot.getChildren().get(coord)).setImage(unplowedTile);
                 break;
@@ -573,6 +580,15 @@ public class GameController {
                     ((ImageView)lot.getChildren().get(coord)).setImage(fertilizedPlowedWateredTile);
                 else
                     ((ImageView)lot.getChildren().get(coord)).setImage(fertilizedPlowedTile);
+                break;
+            case "reset" :
+                resetTile(coord);
+                break;
+            case "tree" :
+                ((ImageView)plantDisplay.getChildren().get(coord)).setImage(takenTree);
+                break;
+            case "removeTree" :
+                ((ImageView)plantDisplay.getChildren().get(coord)).setImage(unplowedTile);
                 break;
         }
     }
