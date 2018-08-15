@@ -1,5 +1,7 @@
 package Model;
 
+import Controller.GameController;
+
 public class Tile
 {
     //private int xCoord;
@@ -88,8 +90,9 @@ public class Tile
         this.rockStatus = rockStatus;
     }
 
-    public void setWitherStatus(boolean witherStatus) {
-        this.witherStatus = witherStatus;
+    public void witherTile(GameController gc) {
+        this.witherStatus = true;
+        gc.displayStatus(heldCrop.getCropName() + " in tile " + (coordinate + 1) + " has withered! Plow it for " + (heldCrop.getSeedCost() / 10.0));
     }
 
     public void setFertilizeStatus(boolean fertilizeStatus) {
@@ -174,7 +177,7 @@ public class Tile
     }
 
     public String toString(){
-        String information = "Coordinate: " + coordinate + "\nIs Plowed: " + Boolean.toString(plowStatus) + "\nIs Watered: " + Boolean.toString(waterStatus)
+        String information = "Coordinate: " + (coordinate + 1) + "\nIs Plowed: " + Boolean.toString(plowStatus) + "\nIs Watered: " + Boolean.toString(waterStatus)
                 + "\nHas Rock: " + Boolean.toString(rockStatus) + "\nHas Space: " + Boolean.toString(spaceStatus) + "\nIs Crop Withered: " + Boolean.toString(witherStatus) + "\nCurrent Crop: ";
         if(heldCrop == null)
             return information.concat("null");

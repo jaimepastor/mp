@@ -42,20 +42,21 @@ public class Player {
 	}
 
 	private void initializeTools() {
-		this.tools.add(new Pickaxe("Pickaxe", "Picks axes"));
-		this.tools.add(new WateringCan("Watering Can", "Waters cans"));
-		this.tools.add(new Plow("Plow", "P's lows"));
-		this.tools.add(new Fertilizer("Fertilizer", "Fertis lizers"));
+		this.tools.add(new Pickaxe("Pickaxe", "Used for destroying rocks obstructing tiles."));
+		this.tools.add(new WateringCan("Watering Can", "Waters a specific crop; Can dispense an infinite amount of water."));
+		this.tools.add(new Plow("Plow", "Prepares a specific title for planting; Also removes withered plants."));
+		this.tools.add(new Fertilizer("Fertilizer", "Not actually a tool, but is bought in finite amounts and fertilizes a specific tile; Cannot be placed on a tile with a plant;"));
 	}
 
 	public void updateLevel() {
-		if (xp == 5 * (level + 1)) {
+		if (xp >= 5 * (level + 1)) {
 			//display YAY YOU LEVELLED UP!!
-			level++;
 			this.xp = this.xp - (5 * (level + 1));//reset xp to 0 plus overloaded xp
+			level++;
 			//send info to controller
 			//
 		}
+		gameController.update();
 	}
 
 	public void updateFarmerType() {
@@ -99,7 +100,7 @@ public class Player {
 			gameController.displayFail("You are missing " + (crop.getSeedCost() - OC) + " OC!");
 		else{
 			seeds.add(crop);
-			OC = OC - crop.getSeedCost();
+			OC = OC - (crop.getSeedCost() - types[curType].getEarnBuyBonus());
 			gameController.displayInfo("New seed! Information:\n" + seeds.get(seeds.size()-1).toString());
 			gameController.update();
 		}
@@ -120,37 +121,39 @@ public class Player {
         int i = tile.getCoordinate();
         if (tile.getPlowStatus() == true) {
             if(tile.getSpaceStatus() == true)
-            	if (computeNoOfSeedType(crop) > 0)
-            		if(type == "Fruit Tree")
-						if(tile.treeValid(lot.getTile(i - 10), lot.getTile(i - 9), lot.getTile(i + 1), lot.getTile(i + 11), lot.getTile(i + 10), lot.getTile(i + 9), lot.getTile(i - 1), lot.getTile(i - 11), tile) == true) {
-							tile.setHeldCrop(getCrop(crop));
-							lot.getTile(i - 10).setSpaceStatus(false);
-							lot.getTile(i - 9).setSpaceStatus(false);
-							lot.getTile(i + 1).setSpaceStatus(false);
-							lot.getTile(i + 11).setSpaceStatus(false);
-							lot.getTile(i + 10).setSpaceStatus(false);
-							lot.getTile(i + 9).setSpaceStatus(false);
-							lot.getTile(i - 1).setSpaceStatus(false);
-							lot.getTile(i - 11).setSpaceStatus(false);
-							tile.setSpaceStatus(false);
-							xp++;
-							gameController.displaySuccess();
+            	if (computeNoOfSeedType(crop) > 0){
+                    if(type == "Fruit Tree")
+                        if(tile.treeValid(lot.getTile(i - 10), lot.getTile(i - 9), lot.getTile(i + 1), lot.getTile(i + 11), lot.getTile(i + 10), lot.getTile(i + 9), lot.getTile(i - 1), lot.getTile(i - 11), tile) == true) {
+                            tile.setHeldCrop(getCrop(crop));
+                            lot.getTile(i - 10).setSpaceStatus(false);
+                            lot.getTile(i - 9).setSpaceStatus(false);
+                            lot.getTile(i + 1).setSpaceStatus(false);
+                            lot.getTile(i + 11).setSpaceStatus(false);
+                            lot.getTile(i + 10).setSpaceStatus(false);
+                            lot.getTile(i + 9).setSpaceStatus(false);
+                            lot.getTile(i - 1).setSpaceStatus(false);
+                            lot.getTile(i - 11).setSpaceStatus(false);
+                            tile.setSpaceStatus(false);
+                            xp++;
+                            gameController.displaySuccess();
                             gameController.activateCrop(i, crop);
 
                             updateLevel();
                             gameController.update();
                         }
-						else gameController.displayFail("There is a filled tile!. check the tiles above, below, and beside");
-					else {
-							tile.setHeldCrop(getCrop(crop));
-							tile.setSpaceStatus(false);
-							xp++;
-							gameController.displaySuccess();
-							gameController.activateCrop(i, crop);
+                        else
+                            gameController.displayFail("There is a filled tile!. check the tiles above, below, and beside");
+                    else {
+                        tile.setHeldCrop(getCrop(crop));
+                        tile.setSpaceStatus(false);
+                        xp++;
+                        gameController.displaySuccess();
+                        gameController.activateCrop(i, crop);
 
-							updateLevel();
-							gameController.update();
-            		}
+                        updateLevel();
+                        gameController.update();
+                    }
+                }
                 else
                     gameController.displayFail("You don't have any " + crop + " seeds." + computeNoOfSeedType(crop));
             else
@@ -161,29 +164,53 @@ public class Player {
 
 	public void harvestCrop(Tile tile) {
 		System.out.println("HARVESTED LESTS GOOOOOOO");
-		xp = tile.getHeldCrop().getXpResult() * tile.getHeldCrop().getNoPrdctsPrdced();
-		OC += tile.getHeldCrop().computeSellingPrice(types[curType].getEarnBuyBonus(), tile.getNoOfWaters(), tile.getNoOfFertilizes());
-		tile.resetTile();
+
+		int hc = tile.getHeldCrop().getHarvestCost();
+		int sc = tile.getHeldCrop().getSeedCost();
+		double profit = (tile.getHeldCrop().computeSellingPrice(tile.getNoOfWaters(), tile.getNoOfFertilizes()) - hc - sc) * tile.getHeldCrop().getNoPrdctsPrdced();
+		int npp = tile.getHeldCrop().getNoPrdctsPrdced();
+        xp = tile.getHeldCrop().getXpResult() * tile.getHeldCrop().getNoPrdctsPrdced();
+        //if statement for tree
+        if(tile.getHeldCrop().getType().equalsIgnoreCase("fruit tree")){
+            System.out.println("xDDDDDddd");
+
+        }
+        gameController.displayStatus("SUCCESSFUL HARVEST!\n\n" + npp + "were harvested.\n" + profit + "OC was earned.");
+        tile.resetTile();
 		gameController.update();
 	}
 
 	public void useTool(String tool, Tile tile){
 	    switch(tool){
-            case "pickaxe" : if(tile.getRockStatus() == false){
-                    gameController.displayFail("Cannot use Pickaxe");
+            case "pickaxe" :
+            	if(tile.getRockStatus() == false){
+            		if(tile.getHeldCrop() == null)
+                    	gameController.displayFail("Cannot use Pickaxe!\nThere is no rock to pick");
+            		else if(tile.getSpaceStatus() == false)
+            			gameController.displayFail("Cannot use Pickaxe!\nThere is a root in the way!");
                 } else {
             		tools.get(0).useTool(tile, gameController);
-            		xp += 5;
+            		xp += 3;
+            		updateLevel();
+            		gameController.update();
 				}
                     break;
             case "wateringCan" :
                 if(tile.getHeldCrop() == null){
-                    gameController.displayFail("Cannot use Watering Can!\nPlant a crop first before watering.");
+                	if(tile.getSpaceStatus() == true)
+						gameController.displayFail("Cannot use Watering Can!\nPlant a crop first before watering.");
+					else if(tile.getSpaceStatus() == false)
+						if(tile.getRockStatus() == true)
+							gameController.displayFail("Cannot use Watering Can!\nA rock is in the way.");
+						else
+							gameController.displayFail("Cannot use Watering Can!\nA root is in the way.");
                 } else if (tile.getNoOfWaters() >= tile.getHeldCrop().getHighWaterNeeded()){
-                    gameController.displayFail("No more fertilizer is allowed.");
+                    gameController.displayFail("No more water is needed.");
                 } else{
                     tools.get(1).useTool(tile, gameController);
                     xp++;
+                    updateLevel();
+                    gameController.update();
                 }
                     break;
             case "plow" : if(tile.getRockStatus() == true) {
@@ -193,11 +220,13 @@ public class Player {
                 } else {
                     tools.get(2).useTool(tile, gameController);
                     xp++;
+                    updateLevel();
+                    gameController.update();
                 }
                     break;
             case "fertilizer" :
-                if(tile.getHeldCrop() == null){
-                    gameController.displayFail("Cannot use Fertilizer!\nPlant a crop first before fertilizing.");
+                if(tile.getHeldCrop() != null){
+                    gameController.displayFail("Cannot use Fertilizer!\nYou can only fertilize before planting a crop.");
                 } else if (noOfFertilizers == 0){
                 	gameController.displayFail("You don't have any fertilizers!");
 				} else if (tile.getNoOfFertilizes() >= tile.getHeldCrop().getHighFertilizerNeeded()){
@@ -206,6 +235,8 @@ public class Player {
                     tools.get(3).useTool(tile, gameController);
                     noOfFertilizers--;
                     xp++;
+                    updateLevel();
+                    gameController.update();
                 }
                     break;
         }

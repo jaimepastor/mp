@@ -19,8 +19,9 @@ public class Crop
     private int witherTime;
     private int prdctStayTime;
     private int xpResult;
-
-    public Crop(String sn, String type, double ht, int wn, int hwn, int fn, int hfn, int hc, int npp, int sc, double bp, int cb, int xp){
+    private int farmerLevelBonus;
+    //removed witherTime, prdctStayTime, and witherStatus since they are redundant; first two are in the thread, third is already an attribute in tile
+    public Crop(String sn, String type, double ht, int wn, int hwn, int fn, int hfn, int hc, int npp, int sc, double bp, int cb, int xp, int flb){
         this.cropName = sn;
         this.type = type;
         this.harvestTime = ht * 60;//converts harvest time to seconds
@@ -38,6 +39,7 @@ public class Crop
         this.witherTime = 0;
         this.prdctStayTime = 0;
         this.sellingPrice = 0;
+        this.farmerLevelBonus = flb;
     }
 
     public String getType() {
@@ -100,7 +102,7 @@ public class Crop
         return xpResult;
     }
 
-    public double computeSellingPrice(int flb, int noOfWaters, int noOfFertilizes){
+    public double computeSellingPrice(int noOfWaters, int noOfFertilizes){
         double wb, fb;
 
         if(noOfWaters >= highWaterNeeded)
@@ -113,7 +115,7 @@ public class Crop
         else
             fb = 1.0 * highFertilizerNeeded * basePrice / 4;
 
-        this.sellingPrice = flb + basePrice + wb + fb + cropBonus;
+        this.sellingPrice = farmerLevelBonus + basePrice + wb + fb + cropBonus;
 
         return sellingPrice;
     }
