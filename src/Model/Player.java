@@ -31,7 +31,7 @@ public class Player {
 	public Player(String name, GameController gc) {
 		this.name = name;
 		this.lot = new Lot();
-		this.OC = 100;
+		this.OC = 500;
 		this.xp = 0;
 		this.level = 0;
 		this.curType = 0;
@@ -73,7 +73,6 @@ public class Player {
 			//display YAY YOU LEVELLED UP!!
 			this.xp = this.xp - (5 * (level + 1));//reset xp to 0 plus overloaded xp
 			level++;
-            updateFarmerType();
         }
 		gameController.update();
 	}
@@ -217,6 +216,7 @@ public class Player {
         if(tile.getHeldCrop().getType().equalsIgnoreCase("fruit tree")){
             lot.enableTiles(tile, gameController);
         }
+        OC += profit;
         gameController.displayStatus("SUCCESSFUL HARVEST!\n\n" + npp + "were harvested.\n" + profit + "OC was earned.");
         tile.resetTile();
 		gameController.update();
@@ -281,8 +281,6 @@ public class Player {
                     gameController.displayFail("Cannot use Fertilizer!\nYou can only fertilize before planting a crop.");
                 } else if (noOfFertilizers == 0) {
                     gameController.displayFail("You don't have any fertilizers!");
-                } else if (tile.getNoOfFertilizes() >= tile.getHeldCrop().getHighFertilizerNeeded()) {
-                    gameController.displayFail("No more fertilizer is allowed.");
                 } else {
                     tools.get(3).useTool(tile, gameController);
                     noOfFertilizers--;

@@ -201,7 +201,7 @@ public class Tile
      */
     public String toString(){
         String information = "Coordinate: " + (coordinate + 1) + "\nIs Plowed: " + Boolean.toString(plowStatus) + "\nIs Watered: " + Boolean.toString(waterStatus)
-                + "\nHas Rock: " + Boolean.toString(rockStatus) + "\nHas Space: " + Boolean.toString(spaceStatus) + "\nIs Crop Withered: " + Boolean.toString(witherStatus) + "\nCurrent Crop: ";
+                + "\nNo. of Waters: " + noOfWaters + "\nNo. of Fertilizes: " + noOfFertilizes + "\nHas Rock: " + Boolean.toString(rockStatus) + "\nHas Space: " + Boolean.toString(spaceStatus) + "\nIs Crop Withered: " + Boolean.toString(witherStatus) + "\nCurrent Crop: ";
         if(heldCrop == null)
             return information.concat("null");
         else
