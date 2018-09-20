@@ -211,13 +211,13 @@ public class Player {
 		int sc = tile.getHeldCrop().getSeedCost();
 		double profit = (tile.getHeldCrop().computeSellingPrice(tile.getNoOfWaters(), tile.getNoOfFertilizes()) - hc - sc) * tile.getHeldCrop().getNoPrdctsPrdced();
 		int npp = tile.getHeldCrop().getNoPrdctsPrdced();
-        xp = tile.getHeldCrop().getXpResult() * tile.getHeldCrop().getNoPrdctsPrdced();
+        xp += tile.getHeldCrop().getXpResult() * tile.getHeldCrop().getNoPrdctsPrdced();
         //if statement for tree
+        OC += profit;
         if(tile.getHeldCrop().getType().equalsIgnoreCase("fruit tree")){
             lot.enableTiles(tile, gameController);
         }
-        OC += profit;
-        gameController.displayStatus("SUCCESSFUL HARVEST!\n\n" + npp + "were harvested.\n" + profit + "OC was earned.");
+        gameController.displayStatus("SUCCESSFUL HARVEST!\n\n" + npp + tile.getHeldCrop().getCropName() + " harvested.\n" + profit + "OC was earned.");
         tile.resetTile();
 		gameController.update();
 	}

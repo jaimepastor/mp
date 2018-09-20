@@ -52,7 +52,6 @@ public class GameController {
     private Random r = new Random();
     private Player p;
     private String imgSource;//keeps the source of click action
-    private String actionSource;
 
     private Image unplowedTile = new Image("/View/tile.png");
     private Image rockTile = new Image("/View/tileWithRock.png");
@@ -490,7 +489,7 @@ public class GameController {
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
-                double timer = 60.0;
+                double timer = 1.0;
                 try{
                     Thread.sleep((long)p.getLot().getTile(coord).getHeldCrop().getHarvestTime() * 1000);//sleeps the thread until harvest time. pls //p.getLot().getTile(coord).getHeldCrop().getHarvestTime()
                 } catch (InterruptedException e){
@@ -535,7 +534,9 @@ public class GameController {
                     buttonDisplay.getChildren().get(coord).setOnMouseClicked(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
-                            p.useTool("plow", p.getLot().getTile(coord));
+                            if(imgSource.contentEquals("plow")) {
+                                p.useTool(imgSource, p.getLot().getTile(coord));
+                            }
                         }
                     });
 
@@ -576,7 +577,7 @@ public class GameController {
             case "plow" : ((ImageView)lot.getChildren().get(coord)).setImage(plowedTile);
                 break;
             case "fertilizer" :
-                if(p.getLot().getTile(coord).getNoOfWaters() >= p.getLot().getTile(coord).getHeldCrop().getWaterNeeded())
+                if(p.getLot().getTile(coord).getNoOfWaters() > 0)
                     ((ImageView)lot.getChildren().get(coord)).setImage(fertilizedPlowedWateredTile);
                 else
                     ((ImageView)lot.getChildren().get(coord)).setImage(fertilizedPlowedTile);
